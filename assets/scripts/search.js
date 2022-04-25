@@ -66,24 +66,19 @@
   );
 
   const templateHtml =
-    '<li style="margin-top:20px"><h3><a href="{url}" title="{desc}">{title}' +
+    '<li style="margin-top:20px"><h3><a href="' + baseUrl + '/{url}" title="{desc}">{title}' +
     "</a></h3><p><small>" +
     "{content}" +
     "</small></p></li>";
   const searchInputEl = document.getElementById("search-input");
   const noResultsText = '<p style="text-align: center;margin-top: 30px">没有找到搜索结果</p>'
+  console.log(data)
   var sjs = SimpleJekyllSearch({
     searchInput: searchInputEl,
     resultsContainer: document.getElementById("results-container"),
     json: data,
     searchResultTemplate: templateHtml,
     noResultsText: noResultsText,
-    sortMiddleware: function(a, b){
-        console.log(a, b)
-        console.log('a.section', a.section)
-        console.log('a.caption', a.caption)
-        return 0
-    },
     templateMiddleware: function (prop, value, query) {
       if (prop == "content") {
         return getPreview(query, value, 150);

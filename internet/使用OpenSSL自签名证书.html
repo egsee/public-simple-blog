@@ -10,15 +10,17 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="导读 网上关于自签证书的博客资料可以说是很多了，但其中的很多写的都是含糊不清的，此篇文章将会尽量清晰的描述自签名证书和创建CA为自己的服务器颁发证书。 什么是数字证书和数字签名 对于这个问题，阮一峰有一篇 文章 比较形象的解释了这个问题，此处，我们主要记录如何生成。" />
 <meta property="og:description" content="导读 网上关于自签证书的博客资料可以说是很多了，但其中的很多写的都是含糊不清的，此篇文章将会尽量清晰的描述自签名证书和创建CA为自己的服务器颁发证书。 什么是数字证书和数字签名 对于这个问题，阮一峰有一篇 文章 比较形象的解释了这个问题，此处，我们主要记录如何生成。" />
+<link rel="canonical" href="http://localhost:4000/simple-blog/internet/%E4%BD%BF%E7%94%A8OpenSSL%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6" />
+<meta property="og:url" content="http://localhost:4000/simple-blog/internet/%E4%BD%BF%E7%94%A8OpenSSL%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6" />
 <meta property="og:site_name" content="EGSEE’s BLOG" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-03-17T21:01:21+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="使用OpenSSL自签名证书" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"EG"},"dateModified":"2021-03-17T21:01:21+08:00","datePublished":"2021-03-17T21:01:21+08:00","description":"导读 网上关于自签证书的博客资料可以说是很多了，但其中的很多写的都是含糊不清的，此篇文章将会尽量清晰的描述自签名证书和创建CA为自己的服务器颁发证书。 什么是数字证书和数字签名 对于这个问题，阮一峰有一篇 文章 比较形象的解释了这个问题，此处，我们主要记录如何生成。","headline":"使用OpenSSL自签名证书","mainEntityOfPage":{"@type":"WebPage","@id":"/simple-blog/internet/%E4%BD%BF%E7%94%A8OpenSSL%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6"},"url":"/simple-blog/internet/%E4%BD%BF%E7%94%A8OpenSSL%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"EG"},"dateModified":"2021-03-17T21:01:21+08:00","datePublished":"2021-03-17T21:01:21+08:00","description":"导读 网上关于自签证书的博客资料可以说是很多了，但其中的很多写的都是含糊不清的，此篇文章将会尽量清晰的描述自签名证书和创建CA为自己的服务器颁发证书。 什么是数字证书和数字签名 对于这个问题，阮一峰有一篇 文章 比较形象的解释了这个问题，此处，我们主要记录如何生成。","headline":"使用OpenSSL自签名证书","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/simple-blog/internet/%E4%BD%BF%E7%94%A8OpenSSL%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6"},"url":"http://localhost:4000/simple-blog/internet/%E4%BD%BF%E7%94%A8OpenSSL%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/simple-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/simple-blog/feed.xml" title="EGSEE's BLOG" />
+<link rel="stylesheet" href="/simple-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/simple-blog/feed.xml" title="EGSEE's BLOG" />
 </head>
 <body><header class="site-header">
 

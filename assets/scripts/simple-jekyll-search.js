@@ -405,7 +405,7 @@ var _$src_8 = {};
     if (isValidQuery(query)) {
       emptyResultsContainer()
       var searchResult = _$Repository_4.search(query);
-      console.log(searchResult)
+    //   console.log('searchResult', searchResult)
       render(searchResult, query)
     }
   }
