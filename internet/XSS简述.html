@@ -10,17 +10,17 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="导读 XSS 攻击是非常常见的网页攻击了，网上有很多资料，但我始终想写一个简单的总结。 何为 XSS? XSS(Cross site script)指利用浏览器的特性，像指定网页提交特殊字符造成浏览器解析运行的一种攻击手段。XSS 有几种，个人觉得记这些意义不大，因此这里不再赘述，有兴趣的朋友可以在网上搜一下。 如何产生 XSS XSS 攻击主要来自于用户的输入，如果你的站点存在着 XSS 漏洞，那么用户就可以进行 XSS 攻击，通过运行脚本代码，用户可以获取譬如 Cookie 等较为敏感的信息。 一个 XSS 攻击的例子 这里我引用LearnKu的两张图来说明 XSS 攻击事如何发生的 在原文中，作者使用了 所见即所得 编辑器，指出虽然所见即所得编辑器过滤了特殊的字符，但依然可能发生 XSS 攻击，原因在于非法用户可能通过其它手段提交数据： 使用 Chrome devtools 提交数据 刷新页面发生 XSS 攻击" />
 <meta property="og:description" content="导读 XSS 攻击是非常常见的网页攻击了，网上有很多资料，但我始终想写一个简单的总结。 何为 XSS? XSS(Cross site script)指利用浏览器的特性，像指定网页提交特殊字符造成浏览器解析运行的一种攻击手段。XSS 有几种，个人觉得记这些意义不大，因此这里不再赘述，有兴趣的朋友可以在网上搜一下。 如何产生 XSS XSS 攻击主要来自于用户的输入，如果你的站点存在着 XSS 漏洞，那么用户就可以进行 XSS 攻击，通过运行脚本代码，用户可以获取譬如 Cookie 等较为敏感的信息。 一个 XSS 攻击的例子 这里我引用LearnKu的两张图来说明 XSS 攻击事如何发生的 在原文中，作者使用了 所见即所得 编辑器，指出虽然所见即所得编辑器过滤了特殊的字符，但依然可能发生 XSS 攻击，原因在于非法用户可能通过其它手段提交数据： 使用 Chrome devtools 提交数据 刷新页面发生 XSS 攻击" />
-<link rel="canonical" href="https://egsee.github.io/simple-blog/internet/XSS%E7%AE%80%E8%BF%B0" />
-<meta property="og:url" content="https://egsee.github.io/simple-blog/internet/XSS%E7%AE%80%E8%BF%B0" />
+<link rel="canonical" href="http://localhost:4000/simple-blog/internet/XSS%E7%AE%80%E8%BF%B0" />
+<meta property="og:url" content="http://localhost:4000/simple-blog/internet/XSS%E7%AE%80%E8%BF%B0" />
 <meta property="og:site_name" content="EGSEE’s BLOG" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-03-02T07:01:26+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="XSS攻击介绍" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"EG"},"dateModified":"2021-03-02T07:01:26+08:00","datePublished":"2021-03-02T07:01:26+08:00","description":"导读 XSS 攻击是非常常见的网页攻击了，网上有很多资料，但我始终想写一个简单的总结。 何为 XSS? XSS(Cross site script)指利用浏览器的特性，像指定网页提交特殊字符造成浏览器解析运行的一种攻击手段。XSS 有几种，个人觉得记这些意义不大，因此这里不再赘述，有兴趣的朋友可以在网上搜一下。 如何产生 XSS XSS 攻击主要来自于用户的输入，如果你的站点存在着 XSS 漏洞，那么用户就可以进行 XSS 攻击，通过运行脚本代码，用户可以获取譬如 Cookie 等较为敏感的信息。 一个 XSS 攻击的例子 这里我引用LearnKu的两张图来说明 XSS 攻击事如何发生的 在原文中，作者使用了 所见即所得 编辑器，指出虽然所见即所得编辑器过滤了特殊的字符，但依然可能发生 XSS 攻击，原因在于非法用户可能通过其它手段提交数据： 使用 Chrome devtools 提交数据 刷新页面发生 XSS 攻击","headline":"XSS攻击介绍","mainEntityOfPage":{"@type":"WebPage","@id":"https://egsee.github.io/simple-blog/internet/XSS%E7%AE%80%E8%BF%B0"},"url":"https://egsee.github.io/simple-blog/internet/XSS%E7%AE%80%E8%BF%B0"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"EG"},"dateModified":"2021-03-02T07:01:26+08:00","datePublished":"2021-03-02T07:01:26+08:00","description":"导读 XSS 攻击是非常常见的网页攻击了，网上有很多资料，但我始终想写一个简单的总结。 何为 XSS? XSS(Cross site script)指利用浏览器的特性，像指定网页提交特殊字符造成浏览器解析运行的一种攻击手段。XSS 有几种，个人觉得记这些意义不大，因此这里不再赘述，有兴趣的朋友可以在网上搜一下。 如何产生 XSS XSS 攻击主要来自于用户的输入，如果你的站点存在着 XSS 漏洞，那么用户就可以进行 XSS 攻击，通过运行脚本代码，用户可以获取譬如 Cookie 等较为敏感的信息。 一个 XSS 攻击的例子 这里我引用LearnKu的两张图来说明 XSS 攻击事如何发生的 在原文中，作者使用了 所见即所得 编辑器，指出虽然所见即所得编辑器过滤了特殊的字符，但依然可能发生 XSS 攻击，原因在于非法用户可能通过其它手段提交数据： 使用 Chrome devtools 提交数据 刷新页面发生 XSS 攻击","headline":"XSS攻击介绍","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/simple-blog/internet/XSS%E7%AE%80%E8%BF%B0"},"url":"http://localhost:4000/simple-blog/internet/XSS%E7%AE%80%E8%BF%B0"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/simple-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://egsee.github.io/simple-blog/feed.xml" title="EGSEE's BLOG" />
+<link rel="stylesheet" href="/simple-blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/simple-blog/feed.xml" title="EGSEE's BLOG" />
 </head>
 <body><header class="site-header">
 
