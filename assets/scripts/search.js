@@ -66,7 +66,7 @@
   );
 
   const templateHtml =
-    '<li style="margin-top:20px"><h3><a href="' + baseUrl + '/{url}" title="{desc}">{title}' +
+    '<li style="margin-top:20px"><h3><a href="' + baseUrl + '{url}" title="{desc}">{title}' +
     "</a></h3><p><small>" +
     "{content}" +
     "</small></p></li>";
