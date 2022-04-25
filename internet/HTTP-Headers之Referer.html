@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang=" en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content="referer,referrer-policy,headers,meta"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>HTTP Headers之Referer | EGSEE’s BLOG</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="HTTP Headers之Referer" />
+<meta name="author" content="EG" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="导读 本文主要记录一下 Headers 中 Referer 和 Referrer-Policy 等相关字段介绍 Referer Referer 字段标记了访问来源，广泛应用于分析、日志、优化缓存等作用。 Referer 字段是 Referrer 单词的错误拼写，由于历史原因沿用至今。 当点击一个链接的时候，Referer包含了拥有这个链接的页面地址，而在对其它域名发起资源请求时，则包含了请求页面的地址。" />
+<meta property="og:description" content="导读 本文主要记录一下 Headers 中 Referer 和 Referrer-Policy 等相关字段介绍 Referer Referer 字段标记了访问来源，广泛应用于分析、日志、优化缓存等作用。 Referer 字段是 Referrer 单词的错误拼写，由于历史原因沿用至今。 当点击一个链接的时候，Referer包含了拥有这个链接的页面地址，而在对其它域名发起资源请求时，则包含了请求页面的地址。" />
+<meta property="og:site_name" content="EGSEE’s BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-17T21:01:21+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="HTTP Headers之Referer" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"EG"},"dateModified":"2021-01-17T21:01:21+08:00","datePublished":"2021-01-17T21:01:21+08:00","description":"导读 本文主要记录一下 Headers 中 Referer 和 Referrer-Policy 等相关字段介绍 Referer Referer 字段标记了访问来源，广泛应用于分析、日志、优化缓存等作用。 Referer 字段是 Referrer 单词的错误拼写，由于历史原因沿用至今。 当点击一个链接的时候，Referer包含了拥有这个链接的页面地址，而在对其它域名发起资源请求时，则包含了请求页面的地址。","headline":"HTTP Headers之Referer","mainEntityOfPage":{"@type":"WebPage","@id":"/internet/HTTP-Headers%E4%B9%8BReferer"},"url":"/internet/HTTP-Headers%E4%B9%8BReferer"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="EGSEE's BLOG" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">EGSEE&#39;s BLOG</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/archives/index">Archives</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content"><div class="wrapper">
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <style>
+      div.post-content img{
+          width: 100%;
+      }
+  </style>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">HTTP Headers之Referer</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-01-17T21:01:21+08:00" itemprop="datePublished">
+        Jan 17, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="导读">导读</h2>
+<blockquote>
+  <p>本文主要记录一下 Headers 中 Referer 和 Referrer-Policy 等相关字段介绍</p>
+</blockquote>
+
+<h2 id="referer">Referer</h2>
+
+<blockquote>
+  <p>Referer 字段标记了访问来源，广泛应用于分析、日志、优化缓存等作用。
+Referer 字段是 Referrer 单词的错误拼写，由于历史原因沿用至今。
+当点击一个链接的时候，<code class="language-plaintext highlighter-rouge">Referer</code>包含了拥有这个链接的页面地址，而在对其它域名发起资源请求时，则包含了请求页面的地址。</p>
+</blockquote>
+
+<!-- more -->
+
+<h3 id="构成">构成</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Referer</code>由 <code class="language-plaintext highlighter-rouge">origin, path, querystring</code>字段构成，<code class="language-plaintext highlighter-rouge">fragment</code>(e.g. “#section”) 或者 <code class="language-plaintext highlighter-rouge">username:password</code> 信息将不会包含在其中。</p>
+
+<h3 id="语法">语法</h3>
+
+<blockquote>
+  <p>Referer: <code class="language-plaintext highlighter-rouge">&lt;url&gt;</code></p>
+</blockquote>
+
+<h3 id="例子">例子</h3>
+
+<p>“https://username:password@example.com/foo/bar/”将不会包含在Referer中
+诸如一下的例子会包含在 Referer 中</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Referer</span><span class="p">:</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//developer.mozilla.org/en-US/docs/Web/JavaScript</span>
+<span class="nx">Referer</span><span class="p">:</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//example.com/page?q=123</span>
+<span class="nx">Referer</span><span class="p">:</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//example.com/</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>注意：Referer 可能包含以上域名的全部或部分，这取决于 <a href="#Referrer-Policy">Referrer Policy</a></p>
+</blockquote>
+
+<h2 id="referrer-policy">Referrer-Policy</h2>
+
+<p>Referrer-Policy 字段主要控制将要展示哪些 Referer 信息</p>
+
+<p>有一下几个选项：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Referrer</span><span class="o">-</span><span class="nx">Policy</span><span class="p">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">referrer</span>
+<span class="nx">Referrer</span><span class="o">-</span><span class="nx">Policy</span><span class="p">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">referrer</span><span class="o">-</span><span class="nx">when</span><span class="o">-</span><span class="nx">downgrade</span>
+<span class="nx">Referrer</span><span class="o">-</span><span class="nx">Policy</span><span class="p">:</span> <span class="nx">origin</span>
+<span class="nx">Referrer</span><span class="o">-</span><span class="nx">Policy</span><span class="p">:</span> <span class="nx">origin</span><span class="o">-</span><span class="nx">when</span><span class="o">-</span><span class="nx">cross</span><span class="o">-</span><span class="nx">origin</span>
+<span class="nx">Referrer</span><span class="o">-</span><span class="nx">Policy</span><span class="p">:</span> <span class="nx">same</span><span class="o">-</span><span class="nx">origin</span>
+<span class="nx">Referrer</span><span class="o">-</span><span class="nx">Policy</span><span class="p">:</span> <span class="nx">strict</span><span class="o">-</span><span class="nx">origin</span>
+<span class="nx">Referrer</span><span class="o">-</span><span class="nx">Policy</span><span class="p">:</span> <span class="nx">strict</span><span class="o">-</span><span class="nx">origin</span><span class="o">-</span><span class="nx">when</span><span class="o">-</span><span class="nx">cross</span><span class="o">-</span><span class="nx">origin</span>
+<span class="nx">Referrer</span><span class="o">-</span><span class="nx">Policy</span><span class="p">:</span> <span class="nx">unsafe</span><span class="o">-</span><span class="nx">url</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>no-referrer</strong>
+省略 Referer 字段，发送请求将不会包含任何头字段</li>
+  <li><strong>no-referrer-when-downgrade</strong>
+这个选项的主要意思是当从 https 访问到 http 中时不展示 referer 信息</li>
+  <li><strong>origin</strong>
+只展示 Origin</li>
+  <li><strong>origin-when-cross-origin</strong>
+表示同源且相同级别协议（https =&gt; https, http =&gt; http）下，展示 Referer 所有信息，但在跨域和降级（https =&gt; http）访问时只展示 origin 信息。</li>
+  <li><strong>same-origin</strong>
+仅在同源下展示 referer 信息</li>
+  <li><strong>strict-origin</strong>
+仅在安全(https)协议下展示 referer 信息</li>
+  <li><strong>strict-origin-when-cross-origin (默认)</strong>
+同源请求展示全部 referer 信息, 跨域请求且安全协议下（https =&gt; https）仅展示 origin</li>
+  <li><strong>unsafe-url</strong>
+任何情况下都展示完整 referer</li>
+</ul>
+
+<h3 id="在-html-里设置-referer-policy-信息">在 HTML 里设置 referer Policy 信息</h3>
+
+<p>也可以在 HTML 中设置 referer 策略信息，如</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"referrer"</span> <span class="na">content=</span><span class="s">"origin"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>在 <code class="language-plaintext highlighter-rouge">&lt;a&gt;, &lt;area&gt;, &lt;img&gt;, &lt;iframe&gt;, &lt;script&gt;, &lt;link&gt;</code> 标签中可以使用<code class="language-plaintext highlighter-rouge">referrerpolicy</code>选项设置 referer policy 信息：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://example.com"</span> <span class="na">referrerpolicy=</span><span class="s">"origin"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>或者在一个 a, area, 或 link 元素中设置 <code class="language-plaintext highlighter-rouge">rel</code> 为 noreferer</p>
+
+<blockquote>
+  <p>注意：上面的 noreferrer 链接关系是不带破折号的。当您使用 <code class="language-plaintext highlighter-rouge">&lt;meta&gt;</code> 元素为整个文档指定引用策略时，应使用短划线编写：<code class="language-plaintext highlighter-rouge">&lt;meta name="referrer" content="no-referrer"&gt;</code>。</p>
+</blockquote>
+
+<h3 id="与-css-集成">与 CSS 集成</h3>
+
+<p>CSS 可以从样式表中获取引用的资源。这些资源也遵循推荐人政策：</p>
+
+<ul>
+  <li>外部 CSS 样式表使用默认策略 (strict-origin-when-cross-origin)，除非它被 CSS 样式表响应中的 Referrer-Policy HTTP 标头覆盖。</li>
+  <li>对于 <code class="language-plaintext highlighter-rouge">&lt;style&gt;</code> 元素或样式属性，使用所有者文档的引用策略。</li>
+</ul>
+
+<h2 id="参考">参考</h2>
+
+<blockquote>
+  <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy#integration_with_html">Referrer-Policy</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referer">Referer</a>
+<a href="https://www.ruanyifeng.com/blog/2016/09/csp.html">Content Security Policy 入门教程</a></p>
+</blockquote>
+
+
+  </div><a class="u-url" href="/internet/HTTP-Headers%E4%B9%8BReferer" hidden></a>
+</article>
+
+        </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">EG</li>
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>EGSEE&#39;s BLOG / Copyright©️2022
+</p>
+      </div>
+    </div>
+
+    <!-- <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/jekyll" target="_blank" title="jekyll"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/jekyllrb" target="_blank" title="jekyllrb"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div> -->
+    <!-- scripts -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js" integrity="sha384-q9CRHqZndzlxGLOj+xrdLDJa9ittGte1NksRmgJKeCV9DrM7Kz868XYqsKWPpAmn" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-YSu1vEueMOXZYSSiTgjRD6egOBAdWrKI6AQBdHjTtvftX42GZLCVzwlxm0RJuipa" crossorigin="anonymous"></script> -->
+
+  </div>
+
+</footer>
+</body>
+
+</html>

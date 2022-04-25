@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang=" en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content="nodejs,GC"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>C内存分配 | EGSEE’s BLOG</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="C内存分配" />
+<meta name="author" content="EG" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="C 内存分配主要有 malloc、calloc、realoc 三个函数，以下简要介绍 内存分区 内存里主要有几个划分，用一张表格表示 内存分区 内容 权限 栈区 函数中的普通变量 可读可写 堆区 动态申请的内存 可读可写 静态变量区 static 修饰的变量 可读可写 数据区 用于初始化变量的常量 只读 代码区 代码指令 只读" />
+<meta property="og:description" content="C 内存分配主要有 malloc、calloc、realoc 三个函数，以下简要介绍 内存分区 内存里主要有几个划分，用一张表格表示 内存分区 内容 权限 栈区 函数中的普通变量 可读可写 堆区 动态申请的内存 可读可写 静态变量区 static 修饰的变量 可读可写 数据区 用于初始化变量的常量 只读 代码区 代码指令 只读" />
+<meta property="og:site_name" content="EGSEE’s BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-18T03:13:16+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="C内存分配" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"EG"},"dateModified":"2020-09-18T03:13:16+08:00","datePublished":"2020-09-18T03:13:16+08:00","description":"C 内存分配主要有 malloc、calloc、realoc 三个函数，以下简要介绍 内存分区 内存里主要有几个划分，用一张表格表示 内存分区 内容 权限 栈区 函数中的普通变量 可读可写 堆区 动态申请的内存 可读可写 静态变量区 static 修饰的变量 可读可写 数据区 用于初始化变量的常量 只读 代码区 代码指令 只读","headline":"C内存分配","mainEntityOfPage":{"@type":"WebPage","@id":"/c/c++/c%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"},"url":"/c/c++/c%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="EGSEE's BLOG" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">EGSEE&#39;s BLOG</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/archives/index">Archives</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content"><div class="wrapper">
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <style>
+      div.post-content img{
+          width: 100%;
+      }
+  </style>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">C内存分配</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2020-09-18T03:13:16+08:00" itemprop="datePublished">
+        Sep 18, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <blockquote>
+  <p>C 内存分配主要有 malloc、calloc、realoc 三个函数，以下简要介绍</p>
+</blockquote>
+
+<h2 id="内存分区">内存分区</h2>
+
+<p>内存里主要有几个划分，用一张表格表示</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>内存分区</th>
+      <th>内容</th>
+      <th>权限</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>栈区</td>
+      <td>函数中的普通变量</td>
+      <td>可读可写</td>
+    </tr>
+    <tr>
+      <td>堆区</td>
+      <td>动态申请的内存</td>
+      <td>可读可写</td>
+    </tr>
+    <tr>
+      <td>静态变量区</td>
+      <td>static 修饰的变量</td>
+      <td>可读可写</td>
+    </tr>
+    <tr>
+      <td>数据区</td>
+      <td>用于初始化变量的常量</td>
+      <td>只读</td>
+    </tr>
+    <tr>
+      <td>代码区</td>
+      <td>代码指令</td>
+      <td>只读</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- more -->
+
+<h2 id="malloccallocrealoc-简介">malloc、calloc、realoc 简介</h2>
+
+<p>C\C++允许我们使用这三个函数直接操作内存，具体就是对堆（Heap）的操作，那么这几种有哪些不同呢？</p>
+
+<h3 id="malloc">malloc</h3>
+
+<ul>
+  <li>
+    <h4 id="函数原型">函数原型</h4>
+    <p><code class="language-plaintext highlighter-rouge">void* malloc (size_t size);</code></p>
+  </li>
+  <li>
+    <h4 id="头文件">头文件</h4>
+    <p><code class="language-plaintext highlighter-rouge">头文件：#include &lt;stdlib.h&gt;</code></p>
+  </li>
+  <li>
+    <h4 id="说明">说明</h4>
+    <p><code class="language-plaintext highlighter-rouge">malloc</code>在 Heap 区域分配一块长度为<code class="language-plaintext highlighter-rouge">size</code>字节的连续区域并返回该区域的地址，malloc() 函数不能为所分配的空间初始化值，需要使用 memset()，。在程序结束前，需要使用 free() 进行内存释放。</p>
+  </li>
+  <li>
+    <h4 id="例子">例子</h4>
+  </li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="o">*</span><span class="n">p</span>  <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+  <span class="n">memset</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">);</span> <span class="c1">//输出100</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>注意： memset 只能给 int 类型赋值的范围为 0x00 - 0xff (即 0 - 255)，超过将按位赋值。<a href="/posts/d8689c7b#字符串只读">memset 使用介绍»</a></p>
+</blockquote>
+
+<h3 id="calloc">calloc</h3>
+
+<ul>
+  <li>
+    <h4 id="函数原型-1">函数原型</h4>
+    <p><code class="language-plaintext highlighter-rouge">void* calloc (size_t num, size_t size)</code></p>
+  </li>
+  <li>
+    <h4 id="头文件-1">头文件</h4>
+    <p><code class="language-plaintext highlighter-rouge">#include &lt;stdlib.h&gt;</code></p>
+  </li>
+  <li>
+    <h4 id="说明-1">说明</h4>
+    <p><code class="language-plaintext highlighter-rouge">calloc</code>和<code class="language-plaintext highlighter-rouge">malloc</code>类似，在内存中动态地分配 num 个长度为 size 的连续空间，并将每一个字节都初始化为 0。所以它的结果是分配了 num*size 个字节长度的内存空间，并且每个字节的值都是 0。</p>
+  </li>
+  <li>
+    <h4 id="使用">使用</h4>
+  </li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">char</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  <span class="c1">// 分配100个字节的内存空间</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>注意 由于返回的指针类型未知，所以在使用 calloc() 时通常需要进行强制类型转换，将 void 指针转换成我们希望的类型。</p>
+</blockquote>
+
+<ul>
+  <li>比较
+以下两种使用等效</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">char</span> <span class="o">*</span><span class="n">str1</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="c1">// malloc() 分配内存空间并用 memset() 初始化</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">str2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="n">memset</span><span class="p">(</span><span class="n">str2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="realoc">realoc</h3>
+
+<ul>
+  <li>
+    <h4 id="函数原型-2">函数原型</h4>
+    <p><code class="language-plaintext highlighter-rouge">void* realloc (void* ptr, size_t size)</code></p>
+  </li>
+  <li>
+    <h4 id="头文件-2">头文件</h4>
+    <p><code class="language-plaintext highlighter-rouge">#include &lt;stdlib.h&gt;</code></p>
+  </li>
+  <li>
+    <h4 id="说明-2">说明</h4>
+    <p>ptr 为需要重新分配的内存空间指针，size 为新的内存空间的大小，<code class="language-plaintext highlighter-rouge">relloc</code>为指定内存指针的动态内存（通常指 malloc 和 calloc 分配的）重新分配大小。</p>
+  </li>
+  <li>
+    <h4 id="注意">注意</h4>
+
+    <ul>
+      <li>如果 ptr 为 NULL，它的效果和 malloc() 相同，即分配 size 字节的内存空间。</li>
+      <li>如果 size 的值为 0，那么 ptr 指向的内存空间就会被释放，但是由于没有开辟新的内存空间，所以会返回空指针，类似于调用 free()。</li>
+      <li>指针 ptr 必须是在动态内存空间分配成功的指针，形如如下的指针是不可以的：int *i; int a[2]；会导致运行时错误，可以简单的这样记忆：用 malloc()、calloc()、realloc() 分配成功的指针才能被 realloc() 函数接受。</li>
+      <li>成功分配内存后 ptr 将被系统回收，不可再对 ptr 指针做任何操作，包括 free()。相反的，可以对 realloc() 函数的返回值进行正常操作。</li>
+      <li>如果是扩大内存操作会把 ptr 指向的内存中的数据复制到新地址（新地址也可能会和原地址相同，但依旧不能对原指针进行任何操作）；如果是缩小内存操作，原始据会被复制并截取新长度。</li>
+    </ul>
+  </li>
+  <li>
+    <h4 id="返回值">返回值</h4>
+    <p>分配成功返回新的内存地址，可能与 ptr 相同，也可能不同。失败则返回 NULL。</p>
+  </li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cp">#define SIZE 5
+</span>  <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="n">SIZE</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+  <span class="kt">int</span> <span class="o">*</span><span class="n">rp</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIZE</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">// 扩容为之前的两倍</span>
+  <span class="c1">// 注意这里使用了新指针(rp)而不是(p)，可在realloc分配失败时，防止p指向的内存泄漏</span>
+  <span class="n">rp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">realloc</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">SIZE</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">rp</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="总结">总结</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">malloc</code> 和 <code class="language-plaintext highlighter-rouge">colloc</code> 都是动态分配内存，但colloc会在初始化的同时将每个字节的内存值初始化为0。</li>
+  <li><code class="language-plaintext highlighter-rouge">realoc</code> 主要功能是对 <code class="language-plaintext highlighter-rouge">malloc</code> 和 <code class="language-plaintext highlighter-rouge">colloc</code> 分配的内存容量进行调整。</li>
+</ul>
+
+  </div><a class="u-url" href="/c/c++/c%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D" hidden></a>
+</article>
+
+        </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">EG</li>
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>EGSEE&#39;s BLOG / Copyright©️2022
+</p>
+      </div>
+    </div>
+
+    <!-- <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/jekyll" target="_blank" title="jekyll"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/jekyllrb" target="_blank" title="jekyllrb"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div> -->
+    <!-- scripts -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js" integrity="sha384-q9CRHqZndzlxGLOj+xrdLDJa9ittGte1NksRmgJKeCV9DrM7Kz868XYqsKWPpAmn" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-YSu1vEueMOXZYSSiTgjRD6egOBAdWrKI6AQBdHjTtvftX42GZLCVzwlxm0RJuipa" crossorigin="anonymous"></script> -->
+
+  </div>
+
+</footer>
+</body>
+
+</html>

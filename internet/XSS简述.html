@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang=" en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content="xss,前端xss攻击,防范xss攻击"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>XSS攻击介绍 | EGSEE’s BLOG</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="XSS攻击介绍" />
+<meta name="author" content="EG" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="导读 XSS 攻击是非常常见的网页攻击了，网上有很多资料，但我始终想写一个简单的总结。 何为 XSS? XSS(Cross site script)指利用浏览器的特性，像指定网页提交特殊字符造成浏览器解析运行的一种攻击手段。XSS 有几种，个人觉得记这些意义不大，因此这里不再赘述，有兴趣的朋友可以在网上搜一下。 如何产生 XSS XSS 攻击主要来自于用户的输入，如果你的站点存在着 XSS 漏洞，那么用户就可以进行 XSS 攻击，通过运行脚本代码，用户可以获取譬如 Cookie 等较为敏感的信息。 一个 XSS 攻击的例子 这里我引用LearnKu的两张图来说明 XSS 攻击事如何发生的 在原文中，作者使用了 所见即所得 编辑器，指出虽然所见即所得编辑器过滤了特殊的字符，但依然可能发生 XSS 攻击，原因在于非法用户可能通过其它手段提交数据： 使用 Chrome devtools 提交数据 刷新页面发生 XSS 攻击" />
+<meta property="og:description" content="导读 XSS 攻击是非常常见的网页攻击了，网上有很多资料，但我始终想写一个简单的总结。 何为 XSS? XSS(Cross site script)指利用浏览器的特性，像指定网页提交特殊字符造成浏览器解析运行的一种攻击手段。XSS 有几种，个人觉得记这些意义不大，因此这里不再赘述，有兴趣的朋友可以在网上搜一下。 如何产生 XSS XSS 攻击主要来自于用户的输入，如果你的站点存在着 XSS 漏洞，那么用户就可以进行 XSS 攻击，通过运行脚本代码，用户可以获取譬如 Cookie 等较为敏感的信息。 一个 XSS 攻击的例子 这里我引用LearnKu的两张图来说明 XSS 攻击事如何发生的 在原文中，作者使用了 所见即所得 编辑器，指出虽然所见即所得编辑器过滤了特殊的字符，但依然可能发生 XSS 攻击，原因在于非法用户可能通过其它手段提交数据： 使用 Chrome devtools 提交数据 刷新页面发生 XSS 攻击" />
+<meta property="og:site_name" content="EGSEE’s BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-02T07:01:26+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="XSS攻击介绍" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"EG"},"dateModified":"2021-03-02T07:01:26+08:00","datePublished":"2021-03-02T07:01:26+08:00","description":"导读 XSS 攻击是非常常见的网页攻击了，网上有很多资料，但我始终想写一个简单的总结。 何为 XSS? XSS(Cross site script)指利用浏览器的特性，像指定网页提交特殊字符造成浏览器解析运行的一种攻击手段。XSS 有几种，个人觉得记这些意义不大，因此这里不再赘述，有兴趣的朋友可以在网上搜一下。 如何产生 XSS XSS 攻击主要来自于用户的输入，如果你的站点存在着 XSS 漏洞，那么用户就可以进行 XSS 攻击，通过运行脚本代码，用户可以获取譬如 Cookie 等较为敏感的信息。 一个 XSS 攻击的例子 这里我引用LearnKu的两张图来说明 XSS 攻击事如何发生的 在原文中，作者使用了 所见即所得 编辑器，指出虽然所见即所得编辑器过滤了特殊的字符，但依然可能发生 XSS 攻击，原因在于非法用户可能通过其它手段提交数据： 使用 Chrome devtools 提交数据 刷新页面发生 XSS 攻击","headline":"XSS攻击介绍","mainEntityOfPage":{"@type":"WebPage","@id":"/internet/XSS%E7%AE%80%E8%BF%B0"},"url":"/internet/XSS%E7%AE%80%E8%BF%B0"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="EGSEE's BLOG" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">EGSEE&#39;s BLOG</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/archives/index">Archives</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content"><div class="wrapper">
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <style>
+      div.post-content img{
+          width: 100%;
+      }
+  </style>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">XSS攻击介绍</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-03-02T07:01:26+08:00" itemprop="datePublished">
+        Mar 2, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="导读">导读</h2>
+
+<blockquote>
+  <p>XSS 攻击是非常常见的网页攻击了，网上有很多资料，但我始终想写一个简单的总结。</p>
+</blockquote>
+
+<h2 id="何为-xss">何为 XSS?</h2>
+
+<p>XSS(Cross site script)指利用浏览器的特性，像指定网页提交特殊字符造成浏览器解析运行的一种攻击手段。XSS 有几种，个人觉得记这些意义不大，因此这里不再赘述，有兴趣的朋友可以在网上搜一下。</p>
+
+<h2 id="如何产生-xss">如何产生 XSS</h2>
+
+<p>XSS 攻击主要来自于用户的输入，如果你的站点存在着 XSS 漏洞，那么用户就可以进行 XSS 攻击，通过运行脚本代码，用户可以获取譬如 Cookie 等较为敏感的信息。</p>
+
+<h2 id="一个-xss-攻击的例子">一个 XSS 攻击的例子</h2>
+
+<p>这里我引用<a href="https://learnku.com/">LearnKu</a>的两张图来说明 XSS 攻击事如何发生的
+在原文中，作者使用了 所见即所得 编辑器，指出虽然所见即所得编辑器过滤了特殊的字符，但依然可能发生 XSS 攻击，原因在于非法用户可能通过其它手段提交数据：</p>
+
+<ul>
+  <li><strong>使用 Chrome devtools 提交数据 刷新页面发生 XSS 攻击</strong></li>
+</ul>
+
+<p><img src="/assets/img/posts/xss-demo1.gif" alt="xss-demo-1" /></p>
+
+<!-- more -->
+
+<ul>
+  <li><strong>数据库已经有了特殊字符的数据</strong></li>
+</ul>
+
+<p><img src="/assets/img/posts/xss-demo2.gif" alt="xss-demo-2" /></p>
+
+<p>Chrome Devtools 示例攻击提交</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://xss.test/demo</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">content-type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/x-www-form-urlencoded</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">upgrade-insecure-requests</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">body</span><span class="p">:</span> <span class="dl">"</span><span class="s2">_token=AGL1jSjzX152b71UEAQiTzwbYdRGYnECRI17WRiG&amp;title=dangerous%20content+&amp;category_id=2&amp;body=%3Cscript%3Ealert%28%27%E5%AD%98%E5%9C%A8%20XSS%20%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81%EF%BC%81%27%29%3C%2Fscript%3E</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">mode</span><span class="p">:</span> <span class="dl">"</span><span class="s2">cors</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="监测-xss-漏洞">监测 XSS 漏洞</h2>
+
+<p>可以使用<a href="https://github.com/0xsobky/HackVault/wiki/Unleashing-an-Ultimate-XSS-Polyglot">XSS Polylot</a>监测 XSS 漏洞，文章进行了说明并有很多 demo.
+也可以使用一些第三方检测工具<a href="https://github.com/Arachni/arachni">Arachni</a>、<a href="https://github.com/mozilla/http-observatory/">http-observatory</a></p>
+
+<h2 id="防范-xss-攻击">防范 XSS 攻击</h2>
+
+<p>以上的例子说明，虽然各种开源的编辑器已经做了 XSS 过滤，但依然发生 XSS 攻击，这是因为后端和网页展示没有对 XSS 做过滤，因此需要前后端都对特殊字符进行过滤，以确保没有 XSS 漏洞。
+XSS 攻击的本质是浏览器解析了特殊字符的脚本，因此我们只需要在用户输入、页面展示、参数传输这些地方过滤这些特殊字符就可以了：</p>
+
+<div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>字符	转义后的字符
+&amp;	 <span class="o">=&gt;</span> &amp;amp<span class="p">;</span>
+&lt;	 <span class="o">=&gt;</span> &amp;lt<span class="p">;</span>
+<span class="o">&gt;</span>	 <span class="o">=&gt;</span> &amp;gt<span class="p">;</span>
+<span class="s2">"	 =&gt; &amp;quot;
+'	 =&gt; &amp;#x27;
+/	 =&gt; &amp;#x2F;
+</span></code></pre></div></div>
+
+<p>同时 JS 中应注意使用<code class="language-plaintext highlighter-rouge">innerHTML</code>,<code class="language-plaintext highlighter-rouge">outerHTML</code>，如果使用他们渲染，将有可能出现 XSS 漏洞。 如果使用了 React、Vue 等框架，使用<code class="language-plaintext highlighter-rouge">v-html</code>,<code class="language-plaintext highlighter-rouge">dangerouslySetInnerHTML</code>也应小心谨慎。</p>
+
+<ul>
+  <li><strong>使用 JQuery</strong></li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;div/&gt;</span><span class="dl">"</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">t</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>prototype.js 的 escabeHTML()</strong></li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">escapeHTML</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;/g</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&amp;amp;</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;/g</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&amp;lt;</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&gt;/g</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&amp;gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Underscope 中的 escape</strong></li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// List of HTML entities for escaping.</span>
+<span class="kd">var</span> <span class="nx">htmlEscapes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">"</span><span class="s2">&amp;</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&amp;amp;</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">&lt;</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&amp;lt;</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">&gt;</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&amp;gt;</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">"</span><span class="dl">'</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&amp;quot;</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">'</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&amp;#x27;</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&amp;#x2F;</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="c1">// Regex containing the keys listed immediately above.</span>
+<span class="kd">var</span> <span class="nx">htmlEscaper</span> <span class="o">=</span> <span class="sr">/</span><span class="se">[</span><span class="sr">&amp;&lt;&gt;"'</span><span class="se">\/]</span><span class="sr">/g</span><span class="p">;</span>
+
+<span class="c1">// Escape a string for HTML interpolation.</span>
+<span class="nx">_</span><span class="p">.</span><span class="nx">escape</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="dl">""</span> <span class="o">+</span> <span class="nx">string</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="nx">htmlEscaper</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">match</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">htmlEscapes</span><span class="p">[</span><span class="nx">match</span><span class="p">];</span>
+  <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="c1">// examples</span>
+<span class="nx">_</span><span class="p">.</span><span class="nx">escape</span><span class="p">(</span><span class="dl">"</span><span class="s2">Curly, Larry &amp; Moe</span><span class="dl">"</span><span class="p">);</span>
+<span class="c1">// =&gt; "Curly, Larry &amp;amp; Moe"</span>
+</code></pre></div></div>
+
+<h2 id="其它安全措施">其它安全措施</h2>
+
+<ul>
+  <li><strong>使用 Content Security Policy</strong>
+<a href="https://www.ruanyifeng.com/blog/2016/09/csp.html">CSP</a>是一个浏览器的特性，能从根本上解决 XSS 漏洞问题</li>
+  <li><strong>设置 Cookie 为 HTTP-only</strong>
+这可能防止部分信息泄漏</li>
+</ul>
+
+<h2 id="参考">参考</h2>
+
+<blockquote>
+  <p><a href="https://coderwall.com/p/ostduq/escape-html-with-javascript">Escape HTML with Javascript</a> &gt; <a href="https://stackoverflow.com/questions/1634271/url-encoding-the-space-character-or-20">URL encoding the space character + or %20</a></p>
+</blockquote>
+
+  </div><a class="u-url" href="/internet/XSS%E7%AE%80%E8%BF%B0" hidden></a>
+</article>
+
+        </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">EG</li>
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>EGSEE&#39;s BLOG / Copyright©️2022
+</p>
+      </div>
+    </div>
+
+    <!-- <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/jekyll" target="_blank" title="jekyll"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/jekyllrb" target="_blank" title="jekyllrb"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div> -->
+    <!-- scripts -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js" integrity="sha384-q9CRHqZndzlxGLOj+xrdLDJa9ittGte1NksRmgJKeCV9DrM7Kz868XYqsKWPpAmn" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-YSu1vEueMOXZYSSiTgjRD6egOBAdWrKI6AQBdHjTtvftX42GZLCVzwlxm0RJuipa" crossorigin="anonymous"></script> -->
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang=" en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content="go,go数组,go slice"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Go数组和切片 | EGSEE’s BLOG</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Go数组和切片" />
+<meta name="author" content="EG" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="数组 数组的定义 Go 数组是具有相同 唯一类型 的一组已编号且长度固定的数据项序列 声明方式 arr := [3]int{1,2,3} //or arr := [...]int{1,2,3,4,5}" />
+<meta property="og:description" content="数组 数组的定义 Go 数组是具有相同 唯一类型 的一组已编号且长度固定的数据项序列 声明方式 arr := [3]int{1,2,3} //or arr := [...]int{1,2,3,4,5}" />
+<meta property="og:site_name" content="EGSEE’s BLOG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-02T03:13:16+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Go数组和切片" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"EG"},"dateModified":"2021-12-02T03:13:16+08:00","datePublished":"2021-12-02T03:13:16+08:00","description":"数组 数组的定义 Go 数组是具有相同 唯一类型 的一组已编号且长度固定的数据项序列 声明方式 arr := [3]int{1,2,3} //or arr := [...]int{1,2,3,4,5}","headline":"Go数组和切片","mainEntityOfPage":{"@type":"WebPage","@id":"/go/Go%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87"},"url":"/go/Go%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="EGSEE's BLOG" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">EGSEE&#39;s BLOG</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/archives/index">Archives</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content"><div class="wrapper">
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <style>
+      div.post-content img{
+          width: 100%;
+      }
+  </style>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Go数组和切片</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-12-02T03:13:16+08:00" itemprop="datePublished">
+        Dec 2, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="数组">数组</h2>
+<h3 id="数组的定义">数组的定义</h3>
+
+<p>Go 数组是具有相同 唯一类型 的一组已编号且长度固定的数据项序列</p>
+
+<h3 id="声明方式">声明方式</h3>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="m">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">}</span>
+<span class="c">//or</span>
+<span class="n">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">}</span>
+</code></pre></div></div>
+<!-- more -->
+
+<p>数组声明后值分配为零，在内存中是连续固定不可变的区域。
+数组是值类型，意味着传递数组会重新复制一份传递，这和 C 或 Java 有所不同
+<img src="/assets/img/posts/go-arr.png" alt="" />
+<!-- more --></p>
+<h3 id="示例">示例</h3>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">var</span> <span class="n">arr1</span> <span class="p">[</span><span class="m">5</span><span class="p">]</span><span class="kt">int</span>
+
+   <span class="k">for</span> <span class="n">i</span><span class="o">:=</span><span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+       <span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="m">2</span>
+   <span class="p">}</span>
+
+   <span class="k">for</span> <span class="n">i</span><span class="o">:=</span><span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+       <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Array at index %d is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="切片">切片</h2>
+
+<h3 id="定义">定义</h3>
+
+<p>切片（slice）是对数组一个连续片段的引用，其底层是数组，所以切片是一个引用类型（因此更类似于 C/C++ 中的数组类型，或者 Python 中的 list 类型），可以将其理解为一个可变数组。</p>
+
+<h3 id="声明和定义">声明和定义</h3>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// 长度3 容量5的切片</span>
+<span class="n">s1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="c">//</span>
+<span class="n">s2</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">}</span>
+<span class="n">s3</span> <span class="o">:=</span> <span class="n">s1</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]</span>
+
+<span class="c">//定义数组</span>
+<span class="n">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="m">3</span><span class="p">]{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">}</span>
+<span class="n">s</span> <span class="o">:=</span> <span class="n">a</span><span class="p">[</span><span class="o">:</span><span class="p">]</span> <span class="c">//转换为slice</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span> <span class="c">// s = {1,2,3,4,5}</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h3 id="内存示意">内存示意</h3>
+
+<p><img src="/assets/img/posts/go-arr.png" alt="" /></p>
+<h3 id="例子">例子</h3>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="n">arr1</span> <span class="p">[</span><span class="m">6</span><span class="p">]</span><span class="kt">int</span>
+    <span class="k">var</span> <span class="n">slice1</span> <span class="p">[]</span><span class="kt">int</span> <span class="o">=</span> <span class="n">arr1</span><span class="p">[</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">]</span> <span class="c">// item at index 5 not included!</span>
+
+    <span class="c">// load the array with integers: 0,1,2,3,4,5</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="p">}</span>
+
+    <span class="c">// print the slice</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">slice1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Slice at %d is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">slice1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="p">}</span>
+
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"The length of arr1 is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr1</span><span class="p">))</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"The length of slice1 is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">slice1</span><span class="p">))</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"The capacity of slice1 is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="nb">cap</span><span class="p">(</span><span class="n">slice1</span><span class="p">))</span>
+
+    <span class="c">// grow the slice</span>
+    <span class="n">slice1</span> <span class="o">=</span> <span class="n">slice1</span><span class="p">[</span><span class="m">0</span><span class="o">:</span><span class="m">4</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">slice1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Slice at %d is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">slice1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="p">}</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"The length of slice1 is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">slice1</span><span class="p">))</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"The capacity of slice1 is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="nb">cap</span><span class="p">(</span><span class="n">slice1</span><span class="p">))</span>
+
+    <span class="c">// grow the slice beyond capacity</span>
+    <span class="c">//slice1 = slice1[0:7 ] // panic: runtime error: slice bound out of range</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="slicing-细节">slicing 细节</h3>
+
+<p>s := make([]int, 5)，s 底层即为上图的数据结构。ptr 是一个指针，指向底层对应的数组。len 是切片的长度 5，cap 是底层数组的容量 5。</p>
+
+<p>当我们执行下面语句时 ：</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s2</span> <span class="o">:=</span> <span class="n">s</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>做 slicing 的时候，go 会新建一个 slice 值 s2，而底层的数据是不动的。s2 如上图深蓝色，通过更改指针、长度和容量来进行 slicing。这也就是为什么 slicing 的性能非常高的原因。</p>
+
+<p>一个 slice 不能越过 cap 进行操作，这个我们从底层很容易理解，因为就相当于越过底层数组的上界进行非法访问了。</p>
+
+<h3 id="切片扩容">切片扩容</h3>
+
+<p>使用内部函数 append 来往切片 slice 后动态追加元素，当 cap 不够时，如果 reslice 后可以放下，那么它会 reslice。例如上面的 s2，底层的数组足以再追加 2 个元素。如果不行，那么它会 new 一个新的底层数组，大小为之前 cap 的两倍，并将之前的元素复制进去:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">7</span><span class="p">)</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="c">// 输出7 10</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">11</span><span class="p">)</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="c">//输出11 20</span>
+<span class="n">如果要追加一个slice到另一个slice的话</span><span class="err">，</span><span class="n">这样</span><span class="err">：</span>
+
+<span class="n">s5</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="n">s6</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="m">11</span><span class="p">,</span> <span class="m">22</span><span class="p">,</span> <span class="m">33</span><span class="p">,</span> <span class="m">44</span><span class="p">,</span> <span class="m">55</span><span class="p">,</span> <span class="m">66</span><span class="p">}</span>
+<span class="n">s</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="n">s5</span><span class="p">,</span> <span class="n">s6</span><span class="o">...</span><span class="p">)</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="c">//输出[0 0 0 0 0 11 22 33 44 55 66] 11 12</span>
+</code></pre></div></div>
+
+<h3 id="使用注意">使用注意</h3>
+
+<p>在这样的场景下注意：如果我们只用到一个 slice 的一小部分，那么底层的整个数组也将继续保存在内存当中。当这个底层数组很大，或者这样的场景很多时，可能会造成内存急剧增加，造成崩溃。</p>
+
+<p>所以在这样的场景下，我们可以将需要的分片复制到一个新的 slice 中去，减少内存的占用。例如一个很大的切片 data 里，我们需要的数据是 data[m:n]，那么我们创建一个新的 slice 变量 r，将数据复制到 r 中返回。</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mydata</span> <span class="o">:=</span> <span class="n">data</span><span class="p">[</span><span class="n">m</span><span class="o">:</span><span class="n">n</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">mydata</span><span class="p">))</span>
+<span class="nb">copy</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">mydata</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">r</span>
+</code></pre></div></div>
+
+<h2 id="举例区别">举例区别</h2>
+
+<p>切片：</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">numbers</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">numbers</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="o">-</span><span class="m">1</span> <span class="p">{</span>
+
+        <span class="n">numbers</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">e</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+        <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="m">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">e</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span>
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="c">// [22 3 6 10 15 21]</span>
+</code></pre></div></div>
+
+<p>数组：</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">numbers</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">numbers</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="o">-</span><span class="m">1</span> <span class="p">{</span>
+
+        <span class="n">numbers</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">e</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+        <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="m">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">e</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="c">// [7 3 5 7 9 11]</span>
+</code></pre></div></div>
+
+<p>遍历时数组类型是值类型，而切片是指针类型，每次传递的是指针，所以每次累加，都是改变后的值来累加。</p>
+
+<h2 id="使用-benchmark-展示-slice-内存使用">使用 Benchmark 展示 slice 内存使用</h2>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="p">(</span>
+	<span class="s">"math/rand"</span>
+	<span class="s">"testing"</span>
+	<span class="s">"time"</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">generateWithCap</span><span class="p">(</span><span class="n">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+	<span class="n">rand</span><span class="o">.</span><span class="n">Seed</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="o">.</span><span class="n">UnixNano</span><span class="p">())</span>
+	<span class="n">nums</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="n">nums</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">rand</span><span class="o">.</span><span class="n">Int</span><span class="p">())</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">nums</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">generate</span><span class="p">(</span><span class="n">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+	<span class="n">rand</span><span class="o">.</span><span class="n">Seed</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="o">.</span><span class="n">UnixNano</span><span class="p">())</span>
+	<span class="n">nums</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="n">nums</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">rand</span><span class="o">.</span><span class="n">Int</span><span class="p">())</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">nums</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">BenchmarkGenerateWithCap</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span><span class="n">testing</span><span class="o">.</span><span class="n">B</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="n">n</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="n">N</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span> <span class="p">{</span>
+		<span class="n">generateWithCap</span><span class="p">(</span><span class="m">1000000</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="n">BenchmarkGenerate</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span><span class="n">testing</span><span class="o">.</span><span class="n">B</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">for</span> <span class="n">n</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="n">N</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span> <span class="p">{</span>
+		<span class="n">generate</span><span class="p">(</span><span class="m">1000000</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>运行结果：</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">go</span> <span class="n">test</span> <span class="o">-</span><span class="n">bench</span><span class="o">=</span><span class="err">'</span><span class="n">Generate</span><span class="err">'</span> <span class="o">.</span>
+<span class="n">goos</span><span class="o">:</span> <span class="n">darwin</span>
+<span class="n">goarch</span><span class="o">:</span> <span class="n">amd64</span>
+<span class="n">pkg</span><span class="o">:</span> <span class="n">example</span>
+<span class="n">BenchmarkGenerateWithCap</span><span class="o">-</span><span class="m">8</span>            <span class="m">44</span>          <span class="m">24294582</span> <span class="n">ns</span><span class="o">/</span><span class="n">op</span>
+<span class="n">BenchmarkGenerate</span><span class="o">-</span><span class="m">8</span>                   <span class="m">34</span>          <span class="m">30342763</span> <span class="n">ns</span><span class="o">/</span><span class="n">op</span>
+<span class="n">PASS</span>
+<span class="n">ok</span>      <span class="n">example</span> <span class="m">2.171</span><span class="n">s</span>
+</code></pre></div></div>
+<p>可以看到生成 100w 个数字的随机序列，GenerateWithCap 的耗时比 Generate 少 20%。
+使用 -benchmem 参数看到内存分配的情况：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>goos: darwin
+goarch: amd64
+pkg: example
+BenchmarkGenerateWithCap-8  43  24335658 ns/op  8003641 B/op    1 allocs/op
+BenchmarkGenerate-8         33  30403687 ns/op  45188395 B/op  40 allocs/op
+PASS
+ok      example 2.121s
+</code></pre></div></div>
+<p>Generate 分配的内存是 GenerateWithCap 的 6 倍，设置了切片容量，内存只分配一次，而不设置切片容量，内存分配了 40 次。</p>
+
+<p>参考：
+<a href="https://geektutu.com/post/hpg-benchmark.html">Go语言高性能编程</a>
+<a href="https://zhuanlan.zhihu.com/p/78747815">数组和切片</a>
+<a href="https://cloud.tencent.com/developer/article/1354294">搞懂golang中的数组和切片slice</a></p>
+
+  </div><a class="u-url" href="/go/Go%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87" hidden></a>
+</article>
+
+        </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">EG</li>
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>EGSEE&#39;s BLOG / Copyright©️2022
+</p>
+      </div>
+    </div>
+
+    <!-- <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/jekyll" target="_blank" title="jekyll"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/jekyllrb" target="_blank" title="jekyllrb"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div> -->
+    <!-- scripts -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js" integrity="sha384-q9CRHqZndzlxGLOj+xrdLDJa9ittGte1NksRmgJKeCV9DrM7Kz868XYqsKWPpAmn" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-YSu1vEueMOXZYSSiTgjRD6egOBAdWrKI6AQBdHjTtvftX42GZLCVzwlxm0RJuipa" crossorigin="anonymous"></script> -->
+
+  </div>
+
+</footer>
+</body>
+
+</html>
