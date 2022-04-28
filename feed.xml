@@ -1,21 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://egsee.github.io/simple-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://egsee.github.io/simple-blog/" rel="alternate" type="text/html" /><updated>2022-04-26T10:30:24+08:00</updated><id>https://egsee.github.io/simple-blog/feed.xml</id><title type="html">EGSEE’s BLOG</title><subtitle>EGSEE's BLOG / Copyright©️2022
-</subtitle><author><name>EG</name></author><entry><title type="html">Go edit replace</title><link href="https://egsee.github.io/simple-blog/go/Go-edit-replace" rel="alternate" type="text/html" title="Go edit replace" /><published>2022-01-01T00:00:00+08:00</published><updated>2022-01-01T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/go/Go%20edit%20replace</id><content type="html" xml:base="https://egsee.github.io/simple-blog/go/Go-edit-replace"><![CDATA[<blockquote>
-  <p>如果一个go模块尚未发布，我们无法直接使用模块路径进行导入。这时候可以使用go mod edit</p>
-</blockquote>
-
-<p>假设<code class="language-plaintext highlighter-rouge">exmaple.com/hello</code>依赖于<code class="language-plaintext highlighter-rouge">example.com/greeting</code></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://egsee.github.io/simple-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://egsee.github.io/simple-blog/" rel="alternate" type="text/html" /><updated>2022-04-28T17:47:02+08:00</updated><id>https://egsee.github.io/simple-blog/feed.xml</id><title type="html">EGSEE’s BLOG</title><subtitle>EGSEE's BLOG / Copyright©️2022
+</subtitle><author><name>EG</name></author><entry><title type="html">Go edit replace</title><link href="https://egsee.github.io/simple-blog/go/Go-edit-replace" rel="alternate" type="text/html" title="Go edit replace" /><published>2022-01-01T00:00:00+08:00</published><updated>2022-01-01T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/go/Go%20edit%20replace</id><content type="html" xml:base="https://egsee.github.io/simple-blog/go/Go-edit-replace"><![CDATA[<p>如果一个go模块尚未发布，我们无法直接使用模块路径进行导入。这时候可以使用go mod edit。假设<code class="language-plaintext highlighter-rouge">exmaple.com/hello</code>依赖于<code class="language-plaintext highlighter-rouge">example.com/greeting</code></p>
 
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// 其中 ../greetings 为文件夹路径，可以与模块名不同</span>
 <span class="err">$</span> <span class="k">go</span> <span class="n">mod</span> <span class="n">edit</span> <span class="o">-</span><span class="n">repalce</span> <span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">greeting</span><span class="o">=../</span><span class="n">greetings</span>
 <span class="c">// 然后运行</span>
 <span class="err">$</span> <span class="k">go</span> <span class="n">mod</span> <span class="n">tidy</span>
 </code></pre></div></div>
-<p>这会在go.mod中生成以下内容:
-<!-- more --></p>
+<!-- more -->
+<p>这会在go.mod中生成以下内容:</p>
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">replace</span> <span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">greetings</span> <span class="o">=&gt;</span> <span class="o">../</span><span class="n">greetings</span>
 
 <span class="n">require</span> <span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">greetings</span> <span class="n">v0</span><span class="m">.0.0</span><span class="o">-</span><span class="m">00010101000000</span><span class="o">-</span><span class="m">000000000000</span>
-</code></pre></div></div>]]></content><author><name>EG</name></author><category term="go" /><category term="go" /><summary type="html"><![CDATA[如果一个go模块尚未发布，我们无法直接使用模块路径进行导入。这时候可以使用go mod edit 假设exmaple.com/hello依赖于example.com/greeting // 其中 ../greetings 为文件夹路径，可以与模块名不同 $ go mod edit -repalce example.com/greeting=../greetings // 然后运行 $ go mod tidy 这会在go.mod中生成以下内容:]]></summary></entry><entry><title type="html">Docker Entrypoint</title><link href="https://egsee.github.io/simple-blog/docker/docker-entrypoint" rel="alternate" type="text/html" title="Docker Entrypoint" /><published>2022-01-01T00:00:00+08:00</published><updated>2022-01-01T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/docker/docker%20entrypoint</id><content type="html" xml:base="https://egsee.github.io/simple-blog/docker/docker-entrypoint"><![CDATA[<h3 id="redis-entrypoint-example">redis entrypoint example</h3>
+</code></pre></div></div>]]></content><author><name>EG</name></author><category term="go" /><category term="go" /><summary type="html"><![CDATA[如果一个go模块尚未发布，我们无法直接使用模块路径进行导入。这时候可以使用go mod edit。假设exmaple.com/hello依赖于example.com/greeting // 其中 ../greetings 为文件夹路径，可以与模块名不同 $ go mod edit -repalce example.com/greeting=../greetings // 然后运行 $ go mod tidy]]></summary></entry><entry><title type="html">Docker Entrypoint</title><link href="https://egsee.github.io/simple-blog/docker/docker-entrypoint" rel="alternate" type="text/html" title="Docker Entrypoint" /><published>2022-01-01T00:00:00+08:00</published><updated>2022-01-01T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/docker/docker%20entrypoint</id><content type="html" xml:base="https://egsee.github.io/simple-blog/docker/docker-entrypoint"><![CDATA[<h3 id="redis-entrypoint-example">redis entrypoint example</h3>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
 ...
@@ -352,9 +348,11 @@ ok      example 2.121s
 <a href="https://stackoverflow.com/questions/36363078/what-does-t-t-get-mean-and-is-it-useful">What does “&lt;T&gt; T get()” mean?</a></p>]]></content><author><name>EG</name></author><category term="java" /><summary type="html"><![CDATA[导读 最近在看Java的过程中对形如public &lt;T&gt; T get(...)的写法感到困惑，在网上很难找到合理解释。 分析 public &lt;T&gt; T readObjectData(ByteBuffer buffer, Class&lt;T&gt; type)]]></summary></entry><entry><title type="html">Java注解</title><link href="https://egsee.github.io/simple-blog/java/java%E6%B3%A8%E8%A7%A3" rel="alternate" type="text/html" title="Java注解" /><published>2021-09-17T03:13:16+08:00</published><updated>2021-09-17T03:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/java/java%E6%B3%A8%E8%A7%A3</id><content type="html" xml:base="https://egsee.github.io/simple-blog/java/java%E6%B3%A8%E8%A7%A3"><![CDATA[<h2 id="导读">导读</h2>
 <p>Java的注解从JDK5引入，有的注解仅仅帮助IDE给出相应提示，有的注解在<code class="language-plaintext highlighter-rouge">runtime</code>时会被解析成字节码，通过反射获取注解内容，有的注解专门约束其它注解类，这样的<code class="language-plaintext highlighter-rouge">Anotation</code>被称为<code class="language-plaintext highlighter-rouge">元注解</code>，本文结合自己的理解将逐一对其进行介绍。</p>
 
-<!-- more -->
 <h2 id="内置注解">内置注解</h2>
 <p>Java的内置注解一共有7个，3个定义在<code class="language-plaintext highlighter-rouge">java.lang</code>中，另外4个定义在<code class="language-plaintext highlighter-rouge">java.lang.annotation</code>中，为了方便，我这里把<code class="language-plaintext highlighter-rouge">java.lang</code>中定义的注解称为<code class="language-plaintext highlighter-rouge">内置注解</code>，<code class="language-plaintext highlighter-rouge">java.lang.annotation</code>定义的注解成为<code class="language-plaintext highlighter-rouge">元注解</code>。</p>
+
+<!-- more -->
+
 <h3 id="override">@Override</h3>
 <p>检查该方法是否是重写方法。如果发现其父类，或者是引用的接口中并没有该方法时，会报编译错误。</p>
 <h3 id="deprecated">@Deprecated</h3>
@@ -369,38 +367,40 @@ ok      example 2.121s
 <ul>
   <li><strong>RetentionPolicy.SOURCE</strong>: Annotation信息仅存在于编译器处理期间，编译器处理完之后就没有该Annotation信息了。</li>
   <li><strong>RetentionPolicy.CLASS</strong>: 编译器将Annotation存储于类对应的.class文件中。默认行为。</li>
-  <li><strong>RetentionPolicy.RUNTIME</strong>: 编译器将Annotation存储于class文件中，并且可由JVM读入。
-    <h4 id="例子">例子：</h4>
-    <p>假设有一个我们自定义了一个名叫<code class="language-plaintext highlighter-rouge">TestAnn</code>的注解
-```java</p>
-  </li>
+  <li><strong>RetentionPolicy.RUNTIME</strong>: 编译器将Annotation存储于class文件中，并且可由JVM读入。</li>
 </ul>
 
-<p>// @Retention(RetentionPolicy.RUNTIME) #可通过反射获取注解内容</p>
+<h4 id="例子">例子：</h4>
+<p>假设有一个我们自定义了一个名叫<code class="language-plaintext highlighter-rouge">TestAnn</code>的注解</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">// @Retention(RetentionPolicy.RUNTIME) #可通过反射获取注解内容</span>
 
-<p>// @Retention(RetentionPolicy.SOURCE) #编译器将忽视TestAnn注释
-public @interface TestAnn {
-  // …
-}</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-## @Target
-对一个自定义注解约束其使用范围，有如下值可选：
-- ElementType.TYPE - 用在类，接口，枚举，注解的声明
-- ElementType.FIELD - 用在字段的和枚举常量
-- ElementType.METHOD - 用在方法的声明
-- ElementType.PARAMETER - 用在参数的声明
-- ElementType.CONSTRUCTOR - 在构造函数的声明
-- ElementType.LOCAL_VARIABLE - 用在局部变量的声明
-- ElementType.ANNOTATION_TYPE - 用在注释的声明
-- ElementType.PACKAGE - 用在包的声明
-### 例子：
-```java
-// 约束注释只能用在字段和方法上
-@Target(value = { ElementType.FIELD, ElementType.METHOD })
-public @interface TestAnn {
-  // ...
-}
+<span class="c1">// @Retention(RetentionPolicy.SOURCE) #编译器将忽视TestAnn注释</span>
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">TestAnn</span> <span class="o">{</span>
+  <span class="c1">// ...</span>
+<span class="o">}</span>
 </code></pre></div></div>
+
+<h2 id="target">@Target</h2>
+<p>对一个自定义注解约束其使用范围，有如下值可选：</p>
+<ul>
+  <li>ElementType.TYPE - 用在类，接口，枚举，注解的声明</li>
+  <li>ElementType.FIELD - 用在字段的和枚举常量</li>
+  <li>ElementType.METHOD - 用在方法的声明</li>
+  <li>ElementType.PARAMETER - 用在参数的声明</li>
+  <li>ElementType.CONSTRUCTOR - 在构造函数的声明</li>
+  <li>ElementType.LOCAL_VARIABLE - 用在局部变量的声明</li>
+  <li>ElementType.ANNOTATION_TYPE - 用在注释的声明</li>
+  <li>ElementType.PACKAGE - 用在包的声明
+    <h3 id="例子-1">例子：</h3>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 约束注释只能用在字段和方法上</span>
+<span class="nd">@Target</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">ElementType</span><span class="o">.</span><span class="na">FIELD</span><span class="o">,</span> <span class="nc">ElementType</span><span class="o">.</span><span class="na">METHOD</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">TestAnn</span> <span class="o">{</span>
+<span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 <h2 id="documented">@Documented</h2>
 <p>标记这些注解是否包含在用户文档中。</p>
@@ -507,7 +507,7 @@ Annotation 有许多实现类，包括：Deprecated, Documented, Inherited, Over
     <span class="o">}</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>EG</name></author><category term="java" /><category term="java注解,java" /><category term="annotation" /><summary type="html"><![CDATA[导读 Java的注解从JDK5引入，有的注解仅仅帮助IDE给出相应提示，有的注解在runtime时会被解析成字节码，通过反射获取注解内容，有的注解专门约束其它注解类，这样的Anotation被称为元注解，本文结合自己的理解将逐一对其进行介绍。]]></summary></entry><entry><title type="html">NPM Workspaces</title><link href="https://egsee.github.io/simple-blog/frontend/NPM-Workspaces" rel="alternate" type="text/html" title="NPM Workspaces" /><published>2021-09-02T03:13:16+08:00</published><updated>2021-09-02T03:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/frontend/NPM%20Workspaces</id><content type="html" xml:base="https://egsee.github.io/simple-blog/frontend/NPM-Workspaces"><![CDATA[<h3 id="workspaces是什么">Workspaces是什么？</h3>
+</code></pre></div></div>]]></content><author><name>EG</name></author><category term="java" /><category term="java注解,java" /><category term="annotation" /><summary type="html"><![CDATA[导读 Java的注解从JDK5引入，有的注解仅仅帮助IDE给出相应提示，有的注解在runtime时会被解析成字节码，通过反射获取注解内容，有的注解专门约束其它注解类，这样的Anotation被称为元注解，本文结合自己的理解将逐一对其进行介绍。 内置注解 Java的内置注解一共有7个，3个定义在java.lang中，另外4个定义在java.lang.annotation中，为了方便，我这里把java.lang中定义的注解称为内置注解，java.lang.annotation定义的注解成为元注解。]]></summary></entry><entry><title type="html">NPM Workspaces</title><link href="https://egsee.github.io/simple-blog/frontend/NPM-Workspaces" rel="alternate" type="text/html" title="NPM Workspaces" /><published>2021-09-02T03:13:16+08:00</published><updated>2021-09-02T03:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/frontend/NPM%20Workspaces</id><content type="html" xml:base="https://egsee.github.io/simple-blog/frontend/NPM-Workspaces"><![CDATA[<h3 id="workspaces是什么">Workspaces是什么？</h3>
 <p>npm在2020年10月发布的版本开始支持一个新功能：Workspaces</p>
 
 <p><code class="language-plaintext highlighter-rouge">Workspaces</code>即工作区，可以帮我们管理包含多个<code class="language-plaintext highlighter-rouge">包（package）</code>的项目，这些项目（称为monorepo）可能包含多个<code class="language-plaintext highlighter-rouge">package.json</code>，而Workspaces可以方便的对这类项目进行管理。</p>
@@ -591,8 +591,6 @@ Lerna 有很多命令来管理大型的monorepo。
 <strong>int建议为一个机器字长，32位机器字长为4字节，64位机器字长为8字节</strong>
 16位环境下,int为2字节。</p>
 
-<!-- more -->
-
 <h3 id="short">short</h3>
 <p>短整型，占用2个字节</p>
 <h3 id="long">long</h3>
@@ -604,6 +602,8 @@ Lerna 有很多命令来管理大型的monorepo。
 <p>操作系统	short	int	long
 Win64	    2	    4	   4
 类Unix系统 2	   4	  8</p>
+
+<!-- more -->
 
 <h3 id="获取某数据类型长度">获取某数据类型长度：</h3>
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
@@ -625,7 +625,7 @@ Win64	    2	    4	   4
 <span class="kt">short</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="kt">int</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="kt">long</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="kt">char</span><span class="o">=</span><span class="mi">1</span>
 <span class="c1">// 64 位 Linux 和 Mac OS 下的运行结果</span>
 <span class="kt">short</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="kt">int</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="kt">long</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="kt">char</span><span class="o">=</span><span class="mi">1</span>  
-</code></pre></div></div>]]></content><author><name>EG</name></author><category term="c/c++" /><category term="c/c++" /><summary type="html"><![CDATA[int 现代操作系统中，int一般占用4个字节(Byte), 共32位。若不考虑正负数， 当所有的位都为 1 时它的值最大，为 232-1 = 4,294,967,295 ≈ 43亿。 int建议为一个机器字长，32位机器字长为4字节，64位机器字长为8字节 16位环境下,int为2字节。]]></summary></entry><entry><title type="html">MarkText CSS</title><link href="https://egsee.github.io/simple-blog/css/marktext" rel="alternate" type="text/html" title="MarkText CSS" /><published>2021-03-31T04:13:16+08:00</published><updated>2021-03-31T04:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/css/marktext</id><content type="html" xml:base="https://egsee.github.io/simple-blog/css/marktext"><![CDATA[<p>MarkText CSS记录的片段…
+</code></pre></div></div>]]></content><author><name>EG</name></author><category term="c/c++" /><category term="c/c++" /><summary type="html"><![CDATA[int 现代操作系统中，int一般占用4个字节(Byte), 共32位。若不考虑正负数， 当所有的位都为 1 时它的值最大，为 232-1 = 4,294,967,295 ≈ 43亿。 int建议为一个机器字长，32位机器字长为4字节，64位机器字长为8字节 16位环境下,int为2字节。 short 短整型，占用2个字节 long 长整型，16位和32位为4字节。 char 占用1个字节 64位环境占用字节情况 操作系统 short int long Win64 2 4 4 类Unix系统 2 4 8]]></summary></entry><entry><title type="html">MarkText CSS</title><link href="https://egsee.github.io/simple-blog/css/marktext" rel="alternate" type="text/html" title="MarkText CSS" /><published>2021-03-31T04:13:16+08:00</published><updated>2021-03-31T04:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/css/marktext</id><content type="html" xml:base="https://egsee.github.io/simple-blog/css/marktext"><![CDATA[<p>MarkText CSS记录的片段…
 <!-- more --></p>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.title-bar</span><span class="o">[</span><span class="nt">data-v-7cb4eed4</span><span class="o">]</span> <span class="p">{</span>
