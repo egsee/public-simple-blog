@@ -1,5 +1,683 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://egsee.github.io/simple-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://egsee.github.io/simple-blog/" rel="alternate" type="text/html" /><updated>2022-05-07T15:37:27+08:00</updated><id>https://egsee.github.io/simple-blog/feed.xml</id><title type="html">EGSEE’s BLOG</title><subtitle>EGSEE's BLOG / Copyright©️2022
-</subtitle><author><name>EG</name></author><entry><title type="html">Table注解</title><link href="https://egsee.github.io/simple-blog/java/java-table%E6%B3%A8%E8%A7%A3" rel="alternate" type="text/html" title="Table注解" /><published>2022-05-07T00:00:00+08:00</published><updated>2022-05-07T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/java/java-table%E6%B3%A8%E8%A7%A3</id><content type="html" xml:base="https://egsee.github.io/simple-blog/java/java-table%E6%B3%A8%E8%A7%A3"><![CDATA[<p>当实体类与其映射表的表名不同的时候，通常会使用<code class="language-plaintext highlighter-rouge">@Table</code>标注说明。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://egsee.github.io/simple-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://egsee.github.io/simple-blog/" rel="alternate" type="text/html" /><updated>2022-05-24T17:47:18+08:00</updated><id>https://egsee.github.io/simple-blog/feed.xml</id><title type="html">EGSEE’s BLOG</title><subtitle>EGSEE's BLOG / Copyright©️2022
+</subtitle><author><name>EG</name></author><entry><title type="html">Javascript typed arrays</title><link href="https://egsee.github.io/simple-blog/frontend/TypedArrays" rel="alternate" type="text/html" title="Javascript typed arrays" /><published>2022-05-18T00:00:00+08:00</published><updated>2022-05-18T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/frontend/TypedArrays</id><content type="html" xml:base="https://egsee.github.io/simple-blog/frontend/TypedArrays"><![CDATA[<p><img src="/simple-blog/assets/img/posts/typedArray1.png" alt="图片" /></p>
+
+<h2 id="类型数组视图">类型数组视图</h2>
+<p>类型化数组视图具有自描述性的名字和所有常用的数值类型像<code class="language-plaintext highlighter-rouge">Int8</code>，<code class="language-plaintext highlighter-rouge">Uint32</code>，<code class="language-plaintext highlighter-rouge">Float64</code> 等等。有一种特殊类型的数组<code class="language-plaintext highlighter-rouge">Uint8ClampedArray</code>。它仅操作 0 到 255 之间的数值。例如，这对于<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/ImageData">Canvas 数据处理</a>非常有用。</p>
+
+<!-- more -->
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Value Range</th>
+      <th style="text-align: left">Size in bytes</th>
+      <th style="text-align: left">Description</th>
+      <th style="text-align: left">Web IDL type</th>
+      <th style="text-align: left">Equivalent C type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array"><code class="language-plaintext highlighter-rouge">Int8Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-128</code> to <code class="language-plaintext highlighter-rouge">127</code></td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">8-bit two’s complement signed integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">byte</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int8_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"><code class="language-plaintext highlighter-rouge">Uint8Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">255</code></td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">8-bit unsigned integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">octet</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint8_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray"><code class="language-plaintext highlighter-rouge">Uint8ClampedArray</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">255</code></td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">8-bit unsigned integer (clamped)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">octet</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint8_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array"><code class="language-plaintext highlighter-rouge">Int16Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-32768</code> to <code class="language-plaintext highlighter-rouge">32767</code></td>
+      <td style="text-align: left">2</td>
+      <td style="text-align: left">16-bit two’s complement signed integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">short</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int16_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array"><code class="language-plaintext highlighter-rouge">Uint16Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">65535</code></td>
+      <td style="text-align: left">2</td>
+      <td style="text-align: left">16-bit unsigned integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unsigned short</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint16_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array"><code class="language-plaintext highlighter-rouge">Int32Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-2147483648</code> to <code class="language-plaintext highlighter-rouge">2147483647</code></td>
+      <td style="text-align: left">4</td>
+      <td style="text-align: left">32-bit two’s complement signed integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">long</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int32_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array"><code class="language-plaintext highlighter-rouge">Uint32Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">4294967295</code></td>
+      <td style="text-align: left">4</td>
+      <td style="text-align: left">32-bit unsigned integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unsigned long</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint32_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code class="language-plaintext highlighter-rouge">Float32Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-3.4E38</code> to <code class="language-plaintext highlighter-rouge">3.4E38</code> and <code class="language-plaintext highlighter-rouge">1.2E-38</code> is the min positive number</td>
+      <td style="text-align: left">4</td>
+      <td style="text-align: left">32-bit IEEE floating point number (7 significant digits e.g., <code class="language-plaintext highlighter-rouge">1.234567</code>)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unrestricted float</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">float</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array"><code class="language-plaintext highlighter-rouge">Float64Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-1.8E308</code> to <code class="language-plaintext highlighter-rouge">1.8E308</code> and <code class="language-plaintext highlighter-rouge">5E-324</code> is the min positive number</td>
+      <td style="text-align: left">8</td>
+      <td style="text-align: left">64-bit IEEE floating point number (16 significant digits e.g., <code class="language-plaintext highlighter-rouge">1.23456789012345</code>)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unrestricted double</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt64Array"><code class="language-plaintext highlighter-rouge">BigInt64Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-2^63</code> to <code class="language-plaintext highlighter-rouge">2^63 - 1</code></td>
+      <td style="text-align: left">8</td>
+      <td style="text-align: left">64-bit two’s complement signed integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bigint</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int64_t (signed long long)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigUint64Array"><code class="language-plaintext highlighter-rouge">BigUint64Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">2^64 - 1</code></td>
+      <td style="text-align: left">8</td>
+      <td style="text-align: left">64-bit unsigned integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bigint</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="使用复杂的数据结构">使用复杂的数据结构</h2>
+
+<p>通过将缓冲与不同类型视图组合，以及修改内存访问的偏移位置，你可以操作包含更多更复杂数据结构的数据。你可以使用 <code class="language-plaintext highlighter-rouge">js-ctypes</code> 操作诸如 <code class="language-plaintext highlighter-rouge">WebGL</code>，数据文件或 C 语言结构体这些复杂的数据结构。</p>
+
+<p>请看如下的 C 语言结构:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">someStruct</span> <span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">id</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">username</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+  <span class="kt">float</span> <span class="n">amountDue</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>你可以采用如下代码访问一个包含此类结构体的缓冲：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">ArrayBuffer</span><span class="p">(</span><span class="mi">24</span><span class="p">);</span>
+
+<span class="c1">// ... read the data into the buffer ...</span>
+
+<span class="kd">var</span> <span class="nx">idView</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint32Array</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">usernameView</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint8Array</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">amountDueView</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Float32Array</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>现在你就可以通过<code class="language-plaintext highlighter-rouge">amountDueView[0]</code>的方式访问数量。</p>
+
+<blockquote>
+  <p>备注：C 语言结构体的数据对齐与平台相关。因此需要防范和考虑不同平台的字节填充对齐。</p>
+</blockquote>
+
+<h2 id="转换为普通数组">转换为普通数组</h2>
+
+<p>在处理完一个类型化数组后，有时需要把它转为普通数组，以便可以可以像普通数据一种操作访问。可以调用 <code class="language-plaintext highlighter-rouge">Array.from</code>实现这种转换，如果 <code class="language-plaintext highlighter-rouge">Array.from</code> 不支持的话，也可以通过如下代码实现：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">typedArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint8Array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span>
+  <span class="nx">normalArray</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">typedArray</span><span class="p">);</span>
+<span class="nx">normalArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">4</span><span class="p">;</span>
+<span class="nx">normalArray</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">JavaScript typed arrays</a><br />
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Typed_arrays">缓冲和视图：类型数组架构</a></p>]]></content><author><name>EG</name></author><category term="frontend" /><summary type="html"><![CDATA[类型数组视图 类型化数组视图具有自描述性的名字和所有常用的数值类型像Int8，Uint32，Float64 等等。有一种特殊类型的数组Uint8ClampedArray。它仅操作 0 到 255 之间的数值。例如，这对于Canvas 数据处理非常有用。]]></summary></entry><entry><title type="html">Elasticsearch常用查询</title><link href="https://egsee.github.io/simple-blog/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2" rel="alternate" type="text/html" title="Elasticsearch常用查询" /><published>2022-05-18T00:00:00+08:00</published><updated>2022-05-18T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2</id><content type="html" xml:base="https://egsee.github.io/simple-blog/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2"><![CDATA[<h2 id="简单查询">简单查询</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">GET</span> <span class="o">/</span><span class="n">library</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">_search</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 查询index为library,type为books中price等于10的</span>
+<span class="no">GET</span> <span class="o">/</span><span class="n">library</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">_search</span><span class="o">?</span><span class="n">q</span><span class="o">=</span><span class="nl">price:</span><span class="mi">10</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// filter_path过滤返回字段</span>
+<span class="no">GET</span> <span class="o">/</span><span class="n">library</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">_search</span><span class="o">?</span><span class="n">q</span><span class="o">=</span><span class="nl">price:</span><span class="mi">10</span><span class="o">&amp;</span><span class="n">filter_path</span><span class="o">=</span><span class="n">hits</span><span class="o">.</span><span class="na">total</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 指定_source返回字段</span>
+<span class="no">GET</span> <span class="n">schools</span><span class="o">/</span><span class="n">_doc</span><span class="o">/</span><span class="mi">5</span><span class="o">?</span><span class="n">_source_includes</span><span class="o">=</span><span class="n">name</span><span class="o">,</span><span class="n">fees</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 获取source源部分</span>
+<span class="no">GET</span> <span class="n">schools</span><span class="o">/</span><span class="n">_doc</span><span class="o">/</span><span class="mi">5</span><span class="o">?</span><span class="n">_source</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 查看集群的节点</span>
+<span class="no">GET</span> <span class="nl">http:</span><span class="c1">//localhost:9200/_cat/?v</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 查看所有索引</span>
+<span class="no">GET</span> <span class="nl">http:</span><span class="c1">//localhost:9200/_cat/indices?v</span>
+</code></pre></div></div>
+
+<!-- more -->
+
+<ul>
+  <li>创建索引时加入别名</li>
+</ul>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/twitte</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"aliases"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"alias_1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"alias_2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"filter"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"term"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"user"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"kimchy"</span><span class="w"> </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"routing"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"kimchy"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>设置回默认值，用 null</li>
+</ul>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/twitter/_settings</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"index"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"refresh_interval"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="普通查询">普通查询</h2>
+
+<h3 id="match_all-查询">match_all 查询</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">GET</span><span class="w"> </span><span class="err">/library/books/_search</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"query"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"match_all"</span><span class="p">:{}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">partial</span><span class="w"> </span><span class="err">过滤出包含preview的字段和排除title,price的字段</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"partial_fields"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"partial"</span><span class="p">:{</span><span class="w">
+            </span><span class="nl">"include"</span><span class="p">:[</span><span class="s2">"preview"</span><span class="p">],</span><span class="w">         </span><span class="err">//包含preview字段的文档</span><span class="w">
+            </span><span class="nl">"exclude"</span><span class="p">:[</span><span class="s2">"title,price"</span><span class="p">]</span><span class="w">      </span><span class="err">//排除title</span><span class="p">,</span><span class="w"> </span><span class="err">price字段</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"query"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"match_all"</span><span class="p">:[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="match-查询">match 查询</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"match"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"desc"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"query"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"包含苹果的查询"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">or</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"match"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"desc"</span><span class="p">:</span><span class="s2">"包含苹果的查询"</span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="match_phrase-和-term-查询">match_phrase 和 term 查询</h3>
+
+<p>该查询完全匹配，不进行分词</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span><span class="w"> </span><span class="err">match_phrase</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"match_phrase"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"desc"</span><span class="p">:</span><span class="s2">"包含苹果的查询"</span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">term</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"desc"</span><span class="p">:</span><span class="s2">"包含苹果的查询"</span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="multi_match-查询">multi_match 查询</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"multi_match"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"query"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"包含苹果的查询"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"desc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"content"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">让完全匹配的文档占的评分较高</span><span class="w"> </span><span class="err">需要使用best_fields</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"multi_match"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"query"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"包含苹果的查询"</span><span class="p">,</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">越多字段匹配的文档评分越高</span><span class="w"> </span><span class="err">使用most_fields</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">如果希望这个词条的分词词汇是分配到不同字段中</span><span class="w"> </span><span class="err">使用cross_fields</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"best_fields"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"desc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"content"</span><span class="p">],</span><span class="w">
+        </span><span class="nl">"tie_breaker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="bool-联合查询">bool 联合查询</h3>
+
+<p>有时候我们需要查询比如这样的例子：
+在内容中(content)包含<strong>苹果</strong>查询但在<code class="language-plaintext highlighter-rouge">title</code>中不包含，就要使用这样的联合查询</p>
+
+<p>例：”name”==”a” and (“city” == “b” or “city” == “c”) 这样的查询：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"must"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"match_phrase"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a"</span><span class="w"> </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"should"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"match_phrase"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b"</span><span class="w"> </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"match_phrase"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c"</span><span class="w"> </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"mininum_should_matach"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>must: 文档必须完全匹配条件</li>
+  <li>should: should 下面会带一个以上的条件，至少满足一个条件，这个文档就符合 should</li>
+  <li>must_not: 文档必须不匹配条件</li>
+</ul>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"must"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"评估"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"must_not"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"苹果"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="must-和-should-查询">must 和 should 查询</h3>
+
+<p>must 和 should 类型 and 和 or</p>
+
+<ul>
+  <li>AND</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">t_test_info</span> <span class="n">t</span> <span class="k">WHERE</span> <span class="n">t</span><span class="p">.</span><span class="n">kv</span><span class="p">.</span><span class="n">p</span><span class="p">.</span><span class="n">keyword</span> <span class="o">=</span> <span class="s1">'123'</span> <span class="k">AND</span> <span class="n">t</span><span class="p">.</span><span class="n">kv</span><span class="p">.</span><span class="n">b</span><span class="p">.</span><span class="n">keyword</span> <span class="o">=</span> <span class="s1">'p'</span>
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"must"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"kv.p.keywords"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w"> </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"kv.p.keywords"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w"> </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"must_not"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"should"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"sort"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>IN</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">t_test_info</span> <span class="n">t</span> <span class="k">WHERE</span> <span class="n">t</span><span class="p">.</span><span class="n">ip</span> <span class="k">in</span> <span class="p">(</span><span class="s1">'1'</span> <span class="p">,</span> <span class="s1">'2'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"terms"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"ip"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>OR</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">t_test_info</span> <span class="n">t</span> <span class="k">WHERE</span> <span class="n">t</span><span class="p">.</span><span class="n">ip</span> <span class="o">=</span> <span class="s1">'123'</span> <span class="k">or</span> <span class="n">t</span><span class="p">.</span><span class="n">kv</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="s1">'l'</span>
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"should"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"ip"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="w"> </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"t.kv.b"</span><span class="p">:</span><span class="w"> </span><span class="s2">"l"</span><span class="w"> </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"must"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"must_not"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>NOT IN</li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">t_test_info</span> <span class="n">t</span> <span class="k">WHERE</span> <span class="n">t</span><span class="p">.</span><span class="n">client_ip</span> <span class="k">not</span> <span class="k">in</span> <span class="p">(</span><span class="s1">'1'</span><span class="p">,</span> <span class="s1">'2'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"must_not"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"ip"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="err">//</span><span class="w"> </span><span class="err">或其它字段</span><span class="w">
+          </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"ip"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"must"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"must_not"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="filterrange-等复合查询">filter、range 等复合查询</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="n">kv</span><span class="p">.</span><span class="k">g</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">t_test_info</span> <span class="n">t</span> <span class="k">WHERE</span> <span class="n">t</span><span class="p">.</span><span class="n">kv</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="s1">'h'</span> <span class="k">and</span> <span class="n">t</span><span class="p">.</span><span class="o">@</span><span class="nb">timestamp</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="nv">"2020-01-01"</span><span class="p">)</span> <span class="k">and</span> <span class="n">t</span><span class="p">.</span><span class="o">@</span><span class="nb">timestamp</span> <span class="o">=&lt;</span> <span class="p">(</span><span class="nv">"2020-07-15"</span><span class="p">)</span> <span class="k">and</span> <span class="n">kv</span><span class="p">.</span><span class="k">g</span> <span class="k">is</span> <span class="k">not</span> <span class="k">null</span> <span class="k">group</span> <span class="k">by</span> <span class="n">t</span><span class="p">.</span><span class="n">kv</span><span class="p">.</span><span class="k">g</span> <span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"must"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"exists"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kv.g"</span><span class="w"> </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"kv.b"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"range"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"@timestamp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"gte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"lte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-15"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"kv"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"terms"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kv.g.keyword"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="聚合查询">聚合查询</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="k">avg</span><span class="p">(</span><span class="n">executionTime</span><span class="p">)</span> <span class="k">from</span> <span class="n">t</span> <span class="k">WHERE</span> <span class="n">executionDate</span> <span class="k">between</span> <span class="s1">'A'</span> <span class="k">AND</span> <span class="s1">'B'</span> <span class="k">group</span> <span class="k">by</span> <span class="n">executionDate</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">executionDate</span> <span class="k">ASC</span>
+</code></pre></div></div>
+
+<p>将 <code class="language-plaintext highlighter-rouge">executionDate</code>分组，然后进行聚合</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"range"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"executionDate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"gte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-01"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"aggregations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"executionDateGroup"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">//</span><span class="w"> </span><span class="err">分组</span><span class="w">
+      </span><span class="nl">"terms"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"executionDate"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">聚合</span><span class="w">
+    </span><span class="nl">"aggregations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"executionTimeAvg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"avg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"executionTime"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="例子">例子</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">GET</span><span class="w"> </span><span class="err">_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"match_all"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span><span class="err">GET</span><span class="w"> </span><span class="err">/private_chat_index/_search?filter_path=hits</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"must"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"match"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"match"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"toUid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"range"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"gte"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652840210000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lte"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652840236500</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">GET</span><span class="w"> </span><span class="err">/private_chat_index/_search?filter_path=hits</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"should"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"must"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="nl">"toUid"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"bool"</span><span class="p">:{</span><span class="w">
+            </span><span class="nl">"must"</span><span class="p">:[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="nl">"toUid"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="参考">参考</h2>
+
+<p>https://blog.csdn.net/AyubLIbra/article/details/106239129</p>]]></content><author><name>EG</name></author><category term="elasticsearch" /><summary type="html"><![CDATA[简单查询 GET /library/books/_search // 查询index为library,type为books中price等于10的 GET /library/books/_search?q=price:10 // filter_path过滤返回字段 GET /library/books/_search?q=price:10&amp;filter_path=hits.total // 指定_source返回字段 GET schools/_doc/5?_source_includes=name,fees // 获取source源部分 GET schools/_doc/5?_source // 查看集群的节点 GET http://localhost:9200/_cat/?v // 查看所有索引 GET http://localhost:9200/_cat/indices?v]]></summary></entry><entry><title type="html">MappedSuperclass注解</title><link href="https://egsee.github.io/simple-blog/java/SuperMapped%E6%B3%A8%E8%A7%A3" rel="alternate" type="text/html" title="MappedSuperclass注解" /><published>2022-05-10T00:00:00+08:00</published><updated>2022-05-10T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/java/SuperMapped%E6%B3%A8%E8%A7%A3</id><content type="html" xml:base="https://egsee.github.io/simple-blog/java/SuperMapped%E6%B3%A8%E8%A7%A3"><![CDATA[<p>当进行实体类到表的映射时，有些表可能有共同的属性，它们需要一个公共的封装父类，以定义公共属性，这时候就需要<code class="language-plaintext highlighter-rouge">MappedSuperclass</code>这个注解。
+它表示，该类不是一个实体类，但继承它属性的实体类会将其属性映射到数据表中。</p>
+
+<p>可以使用<code class="language-plaintext highlighter-rouge">@AttributeOverrides</code>注解重定义父类的属性，如下：
+<!-- more --></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 
+     <span class="nd">@MappedSuperclass</span>
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Employee</span> <span class="o">{</span>
+     
+         <span class="nd">@Id</span> <span class="kd">protected</span> <span class="nc">Integer</span> <span class="n">empId</span><span class="o">;</span>
+         <span class="nd">@Version</span> <span class="kd">protected</span> <span class="nc">Integer</span> <span class="n">version</span><span class="o">;</span>
+         <span class="nd">@ManyToOne</span> 
+         <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"ADDR"</span><span class="o">)</span>
+         <span class="kd">protected</span> <span class="nc">Address</span> <span class="n">address</span><span class="o">;</span>
+     
+         <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getEmpId</span><span class="o">()</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setEmpId</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+         <span class="kd">public</span> <span class="nc">Address</span> <span class="nf">getAddress</span><span class="o">()</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAddress</span><span class="o">(</span><span class="nc">Address</span> <span class="n">addr</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+     <span class="o">}</span>
+     
+     <span class="c1">// Default table is FTEMPLOYEE table</span>
+     <span class="nd">@Entity</span>
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">FTEmployee</span> <span class="kd">extends</span> <span class="nc">Employee</span> <span class="o">{</span>
+     
+         <span class="c1">// Inherited empId field mapped to FTEMPLOYEE.EMPID</span>
+         <span class="c1">// Inherited version field mapped to FTEMPLOYEE.VERSION</span>
+         <span class="c1">// Inherited address field mapped to FTEMPLOYEE.ADDR fk</span>
+     
+         <span class="c1">// Defaults to FTEMPLOYEE.SALARY</span>
+         <span class="kd">protected</span> <span class="nc">Integer</span> <span class="n">salary</span><span class="o">;</span>
+     
+         <span class="kd">public</span> <span class="nf">FTEmployee</span><span class="o">()</span> <span class="o">{}</span>
+     
+         <span class="kd">public</span> <span class="nc">Integer</span> <span class="nf">getSalary</span><span class="o">()</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+     
+         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSalary</span><span class="o">(</span><span class="nc">Integer</span> <span class="n">salary</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+     <span class="o">}</span>
+     
+     <span class="nd">@Entity</span>
+     <span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"PT_EMP"</span><span class="o">)</span>
+     <span class="nd">@AssociationOverride</span><span class="o">(</span>
+         <span class="n">name</span><span class="o">=</span><span class="s">"address"</span><span class="o">,</span> 
+         <span class="n">joincolumns</span><span class="o">=</span><span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"ADDR_ID"</span><span class="o">))</span>
+     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">PartTimeEmployee</span> <span class="kd">extends</span> <span class="nc">Employee</span> <span class="o">{</span>
+     
+         <span class="c1">// Inherited empId field mapped to PT_EMP.EMPID</span>
+         <span class="c1">// Inherited version field mapped to PT_EMP.VERSION</span>
+         <span class="c1">// address field mapping overridden to PT_EMP.ADDR_ID fk</span>
+         <span class="nd">@Column</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"WAGE"</span><span class="o">)</span>
+         <span class="kd">protected</span> <span class="nc">Float</span> <span class="n">hourlyWage</span><span class="o">;</span>
+     
+         <span class="kd">public</span> <span class="nf">PartTimeEmployee</span><span class="o">()</span> <span class="o">{}</span>
+     
+         <span class="kd">public</span> <span class="nc">Float</span> <span class="nf">getHourlyWage</span><span class="o">()</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setHourlyWage</span><span class="o">(</span><span class="nc">Float</span> <span class="n">wage</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+     <span class="o">}</span>
+</code></pre></div></div>]]></content><author><name>EG</name></author><category term="java" /><summary type="html"><![CDATA[当进行实体类到表的映射时，有些表可能有共同的属性，它们需要一个公共的封装父类，以定义公共属性，这时候就需要MappedSuperclass这个注解。 它表示，该类不是一个实体类，但继承它属性的实体类会将其属性映射到数据表中。 可以使用@AttributeOverrides注解重定义父类的属性，如下：]]></summary></entry><entry><title type="html">Table注解</title><link href="https://egsee.github.io/simple-blog/java/java-table%E6%B3%A8%E8%A7%A3" rel="alternate" type="text/html" title="Table注解" /><published>2022-05-07T00:00:00+08:00</published><updated>2022-05-07T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/java/java-table%E6%B3%A8%E8%A7%A3</id><content type="html" xml:base="https://egsee.github.io/simple-blog/java/java-table%E6%B3%A8%E8%A7%A3"><![CDATA[<p>当实体类与其映射表的表名不同的时候，通常会使用<code class="language-plaintext highlighter-rouge">@Table</code>标注说明。</p>
 
 <ul>
   <li>指定表名</li>
@@ -641,83 +1319,4 @@ Lerna 有很多命令来管理大型的monorepo。
   <p><a href="https://docs.npmjs.com/cli/v7/using-npm/workspaces">NPM Workspaces</a>
 <a href="https://ruanmartinelli.com/posts/npm-7-workspaces-1">Getting Started with npm Workspaces</a>
 <a href="https://github.com/vuepress/vuepress-next">Vuepress repository</a></p>
-</blockquote>]]></content><author><name>EG</name></author><category term="frontend" /><category term="npm" /><category term="workspaces" /><summary type="html"><![CDATA[Workspaces是什么？ npm在2020年10月发布的版本开始支持一个新功能：Workspaces Workspaces即工作区，可以帮我们管理包含多个包（package）的项目，这些项目（称为monorepo）可能包含多个package.json，而Workspaces可以方便的对这类项目进行管理。]]></summary></entry><entry><title type="html">Vscode Could not create temporary directory</title><link href="https://egsee.github.io/simple-blog/fregment/Vscode-cound-not-create-dirct" rel="alternate" type="text/html" title="Vscode Could not create temporary directory" /><published>2021-06-03T04:13:16+08:00</published><updated>2021-06-03T04:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/fregment/Vscode%20cound%20not%20create%20dirct</id><content type="html" xml:base="https://egsee.github.io/simple-blog/fregment/Vscode-cound-not-create-dirct"><![CDATA[<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo chown</span> <span class="nv">$USER</span> ~/Library/Caches/com.microsoft.VSCode.ShipIt
-</code></pre></div></div>]]></content><author><name>EG</name></author><category term="fregment" /><category term="vscode" /><summary type="html"><![CDATA[sudo chown $USER ~/Library/Caches/com.microsoft.VSCode.ShipIt]]></summary></entry><entry><title type="html">C语言常用类型占用大小</title><link href="https://egsee.github.io/simple-blog/c/c%E6%95%B4%E6%95%B0" rel="alternate" type="text/html" title="C语言常用类型占用大小" /><published>2021-04-03T04:13:16+08:00</published><updated>2021-04-03T04:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/c/c%E6%95%B4%E6%95%B0</id><content type="html" xml:base="https://egsee.github.io/simple-blog/c/c%E6%95%B4%E6%95%B0"><![CDATA[<h3 id="int">int</h3>
-<p>现代操作系统中，<code class="language-plaintext highlighter-rouge">int</code>一般占用<code class="language-plaintext highlighter-rouge">4</code>个字节(Byte), 共32位。若不考虑正负数，
-当所有的位都为 1 时它的值最大，为 232-1 = 4,294,967,295 ≈ 43亿。
-<strong>int建议为一个机器字长，32位机器字长为4字节，64位机器字长为8字节</strong>
-16位环境下,int为2字节。</p>
-
-<h3 id="short">short</h3>
-<p>短整型，占用2个字节</p>
-<h3 id="long">long</h3>
-<p>长整型，16位和32位为4字节。</p>
-<h2 id="char">char</h2>
-<p>占用1个字节</p>
-
-<h3 id="64位环境占用字节情况">64位环境占用字节情况</h3>
-<p>操作系统	short	int	long
-Win64	    2	    4	   4
-类Unix系统 2	   4	  8</p>
-
-<!-- more -->
-
-<h3 id="获取某数据类型长度">获取某数据类型长度：</h3>
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="kt">short</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-   
-    <span class="kt">int</span> <span class="n">short_length</span> <span class="o">=</span> <span class="k">sizeof</span> <span class="n">a</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">int_length</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">long_length</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">long</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">char_length</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">);</span>
-   
-    <span class="n">printf</span><span class="p">(</span><span class="s">"short=%d, int=%d, long=%d, char=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">short_length</span><span class="p">,</span> <span class="n">int_length</span><span class="p">,</span> <span class="n">long_length</span><span class="p">,</span> <span class="n">char_length</span><span class="p">);</span>
-   
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="c1">// 32 位环境以及 Win64 环境下的运行结果  </span>
-<span class="kt">short</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="kt">int</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="kt">long</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="kt">char</span><span class="o">=</span><span class="mi">1</span>
-<span class="c1">// 64 位 Linux 和 Mac OS 下的运行结果</span>
-<span class="kt">short</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="kt">int</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="kt">long</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="kt">char</span><span class="o">=</span><span class="mi">1</span>  
-</code></pre></div></div>]]></content><author><name>EG</name></author><category term="c" /><category term="c" /><summary type="html"><![CDATA[int 现代操作系统中，int一般占用4个字节(Byte), 共32位。若不考虑正负数， 当所有的位都为 1 时它的值最大，为 232-1 = 4,294,967,295 ≈ 43亿。 int建议为一个机器字长，32位机器字长为4字节，64位机器字长为8字节 16位环境下,int为2字节。 short 短整型，占用2个字节 long 长整型，16位和32位为4字节。 char 占用1个字节 64位环境占用字节情况 操作系统 short int long Win64 2 4 4 类Unix系统 2 4 8]]></summary></entry><entry><title type="html">MarkText CSS</title><link href="https://egsee.github.io/simple-blog/css/marktext" rel="alternate" type="text/html" title="MarkText CSS" /><published>2021-03-31T04:13:16+08:00</published><updated>2021-03-31T04:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/css/marktext</id><content type="html" xml:base="https://egsee.github.io/simple-blog/css/marktext"><![CDATA[<p>MarkText CSS记录的片段…
-<!-- more --></p>
-
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.title-bar</span><span class="o">[</span><span class="nt">data-v-7cb4eed4</span><span class="o">]</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">100vw</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="m">100vh</span><span class="p">;</span>
-    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
-    <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-    <span class="nl">color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
-    <span class="nl">background</span><span class="p">:</span> <span class="n">linear-gradient</span><span class="p">(</span><span class="m">-45deg</span><span class="p">,</span> <span class="m">#ee7752</span><span class="p">,</span> <span class="m">#e73c7e</span><span class="p">,</span> <span class="m">#23a6d5</span><span class="p">,</span> <span class="m">#23d5ab</span><span class="p">);</span>
-    <span class="nl">background-size</span><span class="p">:</span> <span class="m">400%</span> <span class="m">400%</span><span class="p">;</span>
-    <span class="nl">-webkit-animation</span><span class="p">:</span> <span class="n">Gradient-data-v-7cb4eed4</span> <span class="m">15s</span> <span class="n">ease</span> <span class="n">infinite</span><span class="p">;</span>
-    <span class="nl">animation</span><span class="p">:</span> <span class="n">Gradient-data-v-7cb4eed4</span> <span class="m">15s</span> <span class="n">ease</span> <span class="n">infinite</span><span class="p">;</span>
-    <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">@-webkit-keyframes</span> <span class="n">Gradient-data-v-7cb4eed4</span> <span class="p">{</span>
-    <span class="err">0</span><span class="o">%</span> <span class="p">{</span>
-        <span class="nl">background-position</span><span class="p">:</span> <span class="m">0%</span> <span class="m">50%</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="err">50</span><span class="o">%</span> <span class="p">{</span>
-        <span class="nl">background-position</span><span class="p">:</span> <span class="m">100%</span> <span class="m">50%</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="err">100</span><span class="o">%</span> <span class="p">{</span>
-        <span class="nl">background-position</span><span class="p">:</span> <span class="m">0%</span> <span class="m">50%</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="k">@keyframes</span> <span class="n">Gradient-data-v-7cb4eed4</span> <span class="p">{</span>
-    <span class="err">0</span><span class="o">%</span> <span class="p">{</span>
-        <span class="nl">background-position</span><span class="p">:</span> <span class="m">0%</span> <span class="m">50%</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="err">50</span><span class="o">%</span> <span class="p">{</span>
-        <span class="nl">background-position</span><span class="p">:</span> <span class="m">100%</span> <span class="m">50%</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="err">100</span><span class="o">%</span> <span class="p">{</span>
-        <span class="nl">background-position</span><span class="p">:</span> <span class="m">0%</span> <span class="m">50%</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>]]></content><author><name>EG</name></author><category term="css" /><summary type="html"><![CDATA[MarkText CSS记录的片段…]]></summary></entry></feed>
+</blockquote>]]></content><author><name>EG</name></author><category term="frontend" /><category term="npm" /><category term="workspaces" /><summary type="html"><![CDATA[Workspaces是什么？ npm在2020年10月发布的版本开始支持一个新功能：Workspaces Workspaces即工作区，可以帮我们管理包含多个包（package）的项目，这些项目（称为monorepo）可能包含多个package.json，而Workspaces可以方便的对这类项目进行管理。]]></summary></entry></feed>

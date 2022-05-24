@@ -1,6 +1,30 @@
 [
   
     {
+      "title"    : "Javascript typed arrays",
+      "category" : "frontend",
+      "tags"     : "",
+      "url"      : "/simple-blog/frontend/TypedArrays",
+      "date"     : "2022-05-18 00:00:00 +0800"
+    } ,
+  
+    {
+      "title"    : "Elasticsearch常用查询",
+      "category" : "elasticsearch",
+      "tags"     : "",
+      "url"      : "/simple-blog/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2",
+      "date"     : "2022-05-18 00:00:00 +0800"
+    } ,
+  
+    {
+      "title"    : "MappedSuperclass注解",
+      "category" : "java",
+      "tags"     : "",
+      "url"      : "/simple-blog/java/SuperMapped%E6%B3%A8%E8%A7%A3",
+      "date"     : "2022-05-10 00:00:00 +0800"
+    } ,
+  
+    {
       "title"    : "Table注解",
       "category" : "java",
       "tags"     : "",
