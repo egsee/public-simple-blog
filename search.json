@@ -4,7 +4,7 @@
       "title"    : "centos重置为默认官方镜像源",
       "category" : "fragment",
       "tags"     : "centos",
-      "url"      : "//fragment/centos%E9%87%8D%E5%BB%BA%E6%9B%B4%E6%8D%A2%E4%B8%BA%E5%AE%98%E6%96%B9%E9%95%9C%E5%83%8F%E6%BA%90",
+      "url"      : "/fragment/centos%E9%87%8D%E5%BB%BA%E6%9B%B4%E6%8D%A2%E4%B8%BA%E5%AE%98%E6%96%B9%E9%95%9C%E5%83%8F%E6%BA%90",
       "date"     : "2022-05-22 05:13:16 +0800"
     } ,
   
@@ -12,7 +12,7 @@
       "title"    : "undefined symbol php_json_decode_ex in unknown on line 0",
       "category" : "fragment",
       "tags"     : "php, linux",
-      "url"      : "//fragment/php-redis%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD",
+      "url"      : "/fragment/php-redis%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD",
       "date"     : "2022-05-22 04:13:16 +0800"
     } ,
   
@@ -20,7 +20,7 @@
       "title"    : "centos locale警告",
       "category" : "fragment",
       "tags"     : "centos",
-      "url"      : "//fragment/centos-locale%E8%AD%A6%E5%91%8A",
+      "url"      : "/fragment/centos-locale%E8%AD%A6%E5%91%8A",
       "date"     : "2022-05-22 04:13:16 +0800"
     } ,
   
@@ -28,7 +28,7 @@
       "title"    : "Docker CentOS 初始化",
       "category" : "fragment",
       "tags"     : "centos",
-      "url"      : "//fragment/Docker-CentOS%E5%88%9D%E5%A7%8B%E5%8C%96",
+      "url"      : "/fragment/Docker-CentOS%E5%88%9D%E5%A7%8B%E5%8C%96",
       "date"     : "2022-05-21 04:13:16 +0800"
     } ,
   
@@ -36,7 +36,7 @@
       "title"    : "Javascript typed arrays",
       "category" : "frontend",
       "tags"     : "",
-      "url"      : "//frontend/TypedArrays",
+      "url"      : "/frontend/TypedArrays",
       "date"     : "2022-05-18 00:00:00 +0800"
     } ,
   
@@ -44,7 +44,7 @@
       "title"    : "Elasticsearch常用查询",
       "category" : "elasticsearch",
       "tags"     : "",
-      "url"      : "//elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2",
+      "url"      : "/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2",
       "date"     : "2022-05-18 00:00:00 +0800"
     } ,
   
@@ -52,7 +52,7 @@
       "title"    : "MappedSuperclass注解",
       "category" : "java",
       "tags"     : "",
-      "url"      : "//java/SuperMapped%E6%B3%A8%E8%A7%A3",
+      "url"      : "/java/SuperMapped%E6%B3%A8%E8%A7%A3",
       "date"     : "2022-05-10 00:00:00 +0800"
     } ,
   
@@ -60,7 +60,7 @@
       "title"    : "Table注解",
       "category" : "java",
       "tags"     : "",
-      "url"      : "//java/java-table%E6%B3%A8%E8%A7%A3",
+      "url"      : "/java/java-table%E6%B3%A8%E8%A7%A3",
       "date"     : "2022-05-07 00:00:00 +0800"
     } ,
   
@@ -68,7 +68,7 @@
       "title"    : "centos nginx install",
       "category" : "fragment",
       "tags"     : "centos",
-      "url"      : "//fragment/centos-nginx-install",
+      "url"      : "/fragment/centos-nginx-install",
       "date"     : "2022-01-22 04:13:16 +0800"
     } ,
   
@@ -76,7 +76,7 @@
       "title"    : "Go edit replace",
       "category" : "go",
       "tags"     : "go",
-      "url"      : "//go/Go-edit-replace",
+      "url"      : "/go/Go-edit-replace",
       "date"     : "2022-01-01 00:00:00 +0800"
     } ,
   
@@ -84,7 +84,7 @@
       "title"    : "Docker Entrypoint",
       "category" : "docker",
       "tags"     : "dockerfile, docker",
-      "url"      : "//docker/docker-entrypoint",
+      "url"      : "/docker/docker-entrypoint",
       "date"     : "2022-01-01 00:00:00 +0800"
     } ,
   
@@ -92,7 +92,7 @@
       "title"    : "Go数组和切片",
       "category" : "go",
       "tags"     : "go",
-      "url"      : "//go/Go%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87",
+      "url"      : "/go/Go%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87",
       "date"     : "2021-12-02 03:13:16 +0800"
     } ,
   
@@ -100,7 +100,7 @@
       "title"    : "Java &lt;T&gt; T 和 T的区别",
       "category" : "java",
       "tags"     : "",
-      "url"      : "//java/java-T",
+      "url"      : "/java/java-T",
       "date"     : "2021-09-30 21:01:16 +0800"
     } ,
   
@@ -108,7 +108,7 @@
       "title"    : "Java注解",
       "category" : "java",
       "tags"     : "java注解,java, annotation",
-      "url"      : "//java/java%E6%B3%A8%E8%A7%A3",
+      "url"      : "/java/java%E6%B3%A8%E8%A7%A3",
       "date"     : "2021-09-17 03:13:16 +0800"
     } ,
   
@@ -116,7 +116,7 @@
       "title"    : "NPM Workspaces",
       "category" : "frontend",
       "tags"     : "npm, workspaces",
-      "url"      : "//frontend/NPM-Workspaces",
+      "url"      : "/frontend/NPM-Workspaces",
       "date"     : "2021-09-02 03:13:16 +0800"
     } ,
   
@@ -124,7 +124,7 @@
       "title"    : "Vscode Could not create temporary directory",
       "category" : "fragment",
       "tags"     : "vscode",
-      "url"      : "//fragment/Vscode-cound-not-create-dirct",
+      "url"      : "/fragment/Vscode-cound-not-create-dirct",
       "date"     : "2021-06-03 04:13:16 +0800"
     } ,
   
@@ -132,7 +132,7 @@
       "title"    : "C语言常用类型占用大小",
       "category" : "c",
       "tags"     : "c",
-      "url"      : "//c/c%E6%95%B4%E6%95%B0",
+      "url"      : "/c/c%E6%95%B4%E6%95%B0",
       "date"     : "2021-04-03 04:13:16 +0800"
     } ,
   
@@ -140,7 +140,7 @@
       "title"    : "MarkText CSS",
       "category" : "css",
       "tags"     : "",
-      "url"      : "//css/marktext",
+      "url"      : "/css/marktext",
       "date"     : "2021-03-31 04:13:16 +0800"
     } ,
   
@@ -148,7 +148,7 @@
       "title"    : "URL构成",
       "category" : "common",
       "tags"     : "git",
-      "url"      : "//git/common/URL%E6%9E%84%E6%88%90",
+      "url"      : "/git/common/URL%E6%9E%84%E6%88%90",
       "date"     : "2021-03-21 02:00:01 +0800"
     } ,
   
@@ -156,7 +156,7 @@
       "title"    : "使用OpenSSL自签名证书",
       "category" : "internet",
       "tags"     : "web安全, 密码学",
-      "url"      : "//internet/%E4%BD%BF%E7%94%A8OpenSSL%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6",
+      "url"      : "/internet/%E4%BD%BF%E7%94%A8OpenSSL%E8%87%AA%E7%AD%BE%E5%90%8D%E8%AF%81%E4%B9%A6",
       "date"     : "2021-03-17 21:01:21 +0800"
     } ,
   
@@ -164,7 +164,7 @@
       "title"    : "XSS攻击介绍",
       "category" : "internet",
       "tags"     : "web安全, 网络安全",
-      "url"      : "//internet/XSS%E7%AE%80%E8%BF%B0",
+      "url"      : "/internet/XSS%E7%AE%80%E8%BF%B0",
       "date"     : "2021-03-02 07:01:26 +0800"
     } ,
   
@@ -172,7 +172,7 @@
       "title"    : "escape、encodeURI和encodeURIComponent的区别",
       "category" : "frontend",
       "tags"     : "frontend basic",
-      "url"      : "//frontend/escape-encodeURI%E5%92%8CencodeURIComponent",
+      "url"      : "/frontend/escape-encodeURI%E5%92%8CencodeURIComponent",
       "date"     : "2021-02-21 21:01:16 +0800"
     } ,
   
@@ -180,7 +180,7 @@
       "title"    : "C/C++编译过程",
       "category" : "c",
       "tags"     : "c",
-      "url"      : "//c/c%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B",
+      "url"      : "/c/c%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B",
       "date"     : "2021-02-03 21:01:16 +0800"
     } ,
   
@@ -188,7 +188,7 @@
       "title"    : "HTTP Headers之Referer",
       "category" : "internet",
       "tags"     : "headers",
-      "url"      : "//internet/HTTP-Headers%E4%B9%8BReferer",
+      "url"      : "/internet/HTTP-Headers%E4%B9%8BReferer",
       "date"     : "2021-01-17 21:01:21 +0800"
     } ,
   
@@ -196,7 +196,7 @@
       "title"    : "memset替换字符串的注意点",
       "category" : "c",
       "tags"     : "c, 内存",
-      "url"      : "//c/memset-tips",
+      "url"      : "/c/memset-tips",
       "date"     : "2020-10-18 03:13:16 +0800"
     } ,
   
@@ -204,7 +204,7 @@
       "title"    : "C内存分配",
       "category" : "c",
       "tags"     : "c, 内存",
-      "url"      : "//c/c%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D",
+      "url"      : "/c/c%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D",
       "date"     : "2020-09-18 03:13:16 +0800"
     } 
   
