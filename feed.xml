@@ -1,158 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://egsee.github.io/simple-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://egsee.github.io/simple-blog/" rel="alternate" type="text/html" /><updated>2022-05-24T17:47:18+08:00</updated><id>https://egsee.github.io/simple-blog/feed.xml</id><title type="html">EGSEE’s BLOG</title><subtitle>EGSEE's BLOG / Copyright©️2022
-</subtitle><author><name>EG</name></author><entry><title type="html">Javascript typed arrays</title><link href="https://egsee.github.io/simple-blog/frontend/TypedArrays" rel="alternate" type="text/html" title="Javascript typed arrays" /><published>2022-05-18T00:00:00+08:00</published><updated>2022-05-18T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/frontend/TypedArrays</id><content type="html" xml:base="https://egsee.github.io/simple-blog/frontend/TypedArrays"><![CDATA[<p><img src="/simple-blog/assets/img/posts/typedArray1.png" alt="图片" /></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://egsee.github.io/simple-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://egsee.github.io/simple-blog/" rel="alternate" type="text/html" /><updated>2022-08-02T14:22:39+08:00</updated><id>https://egsee.github.io/simple-blog/feed.xml</id><title type="html">EGSEE’s BLOG</title><subtitle>EGSEE's BLOG / Copyright©️2022
+</subtitle><author><name>EG</name></author><entry><title type="html">centos重置为默认官方镜像源</title><link href="https://egsee.github.io/simple-blog/fragment/centos%E9%87%8D%E5%BB%BA%E6%9B%B4%E6%8D%A2%E4%B8%BA%E5%AE%98%E6%96%B9%E9%95%9C%E5%83%8F%E6%BA%90" rel="alternate" type="text/html" title="centos重置为默认官方镜像源" /><published>2022-05-22T05:13:16+08:00</published><updated>2022-05-22T05:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/fragment/centos%E9%87%8D%E5%BB%BA%E6%9B%B4%E6%8D%A2%E4%B8%BA%E5%AE%98%E6%96%B9%E9%95%9C%E5%83%8F%E6%BA%90</id><content type="html" xml:base="https://egsee.github.io/simple-blog/fragment/centos%E9%87%8D%E5%BB%BA%E6%9B%B4%E6%8D%A2%E4%B8%BA%E5%AE%98%E6%96%B9%E9%95%9C%E5%83%8F%E6%BA%90"><![CDATA[<p><strong>1. 备份当前yum源配置</strong></p>
 
-<h2 id="类型数组视图">类型数组视图</h2>
-<p>类型化数组视图具有自描述性的名字和所有常用的数值类型像<code class="language-plaintext highlighter-rouge">Int8</code>，<code class="language-plaintext highlighter-rouge">Uint32</code>，<code class="language-plaintext highlighter-rouge">Float64</code> 等等。有一种特殊类型的数组<code class="language-plaintext highlighter-rouge">Uint8ClampedArray</code>。它仅操作 0 到 255 之间的数值。例如，这对于<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/ImageData">Canvas 数据处理</a>非常有用。</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>复制cd /etc/yum.repos.d/
+rename repo repo.old CentOS-<span class="k">*</span>.repo
+</code></pre></div></div>
+
+<p><strong>2. 重建官方yum源</strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>复制rpm <span class="nt">-Uvh</span> <span class="nt">--force</span> http://mirror.centos.org/centos-7/7.9.2009/os/x86_64/Packages/centos-release-7-9.2009.0.el7.centos.x86_64.rpm
+</code></pre></div></div>
+<!-- more -->
+
+<p><strong>3. 重建缓存</strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>复制yum clean all
+yum makecache
+</code></pre></div></div>]]></content><author><name>EG</name></author><category term="fragment" /><category term="centos" /><summary type="html"><![CDATA[1. 备份当前yum源配置 复制cd /etc/yum.repos.d/ rename repo repo.old CentOS-*.repo 2. 重建官方yum源 复制rpm -Uvh --force http://mirror.centos.org/centos-7/7.9.2009/os/x86_64/Packages/centos-release-7-9.2009.0.el7.centos.x86_64.rpm]]></summary></entry><entry><title type="html">centos locale警告</title><link href="https://egsee.github.io/simple-blog/fragment/centos-locale%E8%AD%A6%E5%91%8A" rel="alternate" type="text/html" title="centos locale警告" /><published>2022-05-22T04:13:16+08:00</published><updated>2022-05-22T04:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/fragment/centos%20locale%E8%AD%A6%E5%91%8A</id><content type="html" xml:base="https://egsee.github.io/simple-blog/fragment/centos-locale%E8%AD%A6%E5%91%8A"><![CDATA[<p>zh_CN</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># vim /etc/profile.d/locale.sh</span>
+<span class="nb">export </span><span class="nv">LC_CTYPE</span><span class="o">=</span>zh_CN.UTF-8
+<span class="nb">export </span><span class="nv">LC_ALL</span><span class="o">=</span>zh_CN.UTF-8
+
+<span class="c"># vim /etc/locale.conf</span>
+<span class="nv">LANG</span><span class="o">=</span>zh_CN.UTF-8
+
+<span class="c"># vim /etc/sysconfig/i18n</span>
+<span class="nv">LANG</span><span class="o">=</span>zh_CN.UTF-8
+
+<span class="c"># vim /etc/environment</span>
+<span class="nv">LANG</span><span class="o">=</span>zh_CN.UTF-8
+<span class="nv">LC_ALL</span><span class="o">=</span>zh_CN.UTF-8
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> /etc/profile.d/locale.sh
+</code></pre></div></div>
 
 <!-- more -->
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Type</th>
-      <th style="text-align: left">Value Range</th>
-      <th style="text-align: left">Size in bytes</th>
-      <th style="text-align: left">Description</th>
-      <th style="text-align: left">Web IDL type</th>
-      <th style="text-align: left">Equivalent C type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array"><code class="language-plaintext highlighter-rouge">Int8Array</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-128</code> to <code class="language-plaintext highlighter-rouge">127</code></td>
-      <td style="text-align: left">1</td>
-      <td style="text-align: left">8-bit two’s complement signed integer</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">byte</code></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int8_t</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"><code class="language-plaintext highlighter-rouge">Uint8Array</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">255</code></td>
-      <td style="text-align: left">1</td>
-      <td style="text-align: left">8-bit unsigned integer</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">octet</code></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint8_t</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray"><code class="language-plaintext highlighter-rouge">Uint8ClampedArray</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">255</code></td>
-      <td style="text-align: left">1</td>
-      <td style="text-align: left">8-bit unsigned integer (clamped)</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">octet</code></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint8_t</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array"><code class="language-plaintext highlighter-rouge">Int16Array</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-32768</code> to <code class="language-plaintext highlighter-rouge">32767</code></td>
-      <td style="text-align: left">2</td>
-      <td style="text-align: left">16-bit two’s complement signed integer</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">short</code></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int16_t</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array"><code class="language-plaintext highlighter-rouge">Uint16Array</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">65535</code></td>
-      <td style="text-align: left">2</td>
-      <td style="text-align: left">16-bit unsigned integer</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unsigned short</code></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint16_t</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array"><code class="language-plaintext highlighter-rouge">Int32Array</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-2147483648</code> to <code class="language-plaintext highlighter-rouge">2147483647</code></td>
-      <td style="text-align: left">4</td>
-      <td style="text-align: left">32-bit two’s complement signed integer</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">long</code></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int32_t</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array"><code class="language-plaintext highlighter-rouge">Uint32Array</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">4294967295</code></td>
-      <td style="text-align: left">4</td>
-      <td style="text-align: left">32-bit unsigned integer</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unsigned long</code></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint32_t</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code class="language-plaintext highlighter-rouge">Float32Array</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-3.4E38</code> to <code class="language-plaintext highlighter-rouge">3.4E38</code> and <code class="language-plaintext highlighter-rouge">1.2E-38</code> is the min positive number</td>
-      <td style="text-align: left">4</td>
-      <td style="text-align: left">32-bit IEEE floating point number (7 significant digits e.g., <code class="language-plaintext highlighter-rouge">1.234567</code>)</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unrestricted float</code></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">float</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array"><code class="language-plaintext highlighter-rouge">Float64Array</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-1.8E308</code> to <code class="language-plaintext highlighter-rouge">1.8E308</code> and <code class="language-plaintext highlighter-rouge">5E-324</code> is the min positive number</td>
-      <td style="text-align: left">8</td>
-      <td style="text-align: left">64-bit IEEE floating point number (16 significant digits e.g., <code class="language-plaintext highlighter-rouge">1.23456789012345</code>)</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unrestricted double</code></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt64Array"><code class="language-plaintext highlighter-rouge">BigInt64Array</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-2^63</code> to <code class="language-plaintext highlighter-rouge">2^63 - 1</code></td>
-      <td style="text-align: left">8</td>
-      <td style="text-align: left">64-bit two’s complement signed integer</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bigint</code></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int64_t (signed long long)</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigUint64Array"><code class="language-plaintext highlighter-rouge">BigUint64Array</code></a></td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">2^64 - 1</code></td>
-      <td style="text-align: left">8</td>
-      <td style="text-align: left">64-bit unsigned integer</td>
-      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bigint</code></td>
-      <td style="text-align: left"> </td>
-    </tr>
-  </tbody>
-</table>
+<ul>
+  <li>en_US</li>
+</ul>
 
-<h2 id="使用复杂的数据结构">使用复杂的数据结构</h2>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># vim /etc/profile.d/locale.sh</span>
+<span class="nb">export </span><span class="nv">LC_CTYPE</span><span class="o">=</span>en_US.UTF-8
+<span class="nb">export </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8
 
-<p>通过将缓冲与不同类型视图组合，以及修改内存访问的偏移位置，你可以操作包含更多更复杂数据结构的数据。你可以使用 <code class="language-plaintext highlighter-rouge">js-ctypes</code> 操作诸如 <code class="language-plaintext highlighter-rouge">WebGL</code>，数据文件或 C 语言结构体这些复杂的数据结构。</p>
+<span class="c"># vim /etc/locale.conf</span>
+<span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
 
-<p>请看如下的 C 语言结构:</p>
+<span class="c"># vim /etc/sysconfig/i18n</span>
+<span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
 
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">someStruct</span> <span class="p">{</span>
-  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">id</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">username</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
-  <span class="kt">float</span> <span class="n">amountDue</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="c"># vim /etc/environment</span>
+<span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+<span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8
+</code></pre></div></div>]]></content><author><name>EG</name></author><category term="fragment" /><category term="centos" /><summary type="html"><![CDATA[zh_CN # vim /etc/profile.d/locale.sh export LC_CTYPE=zh_CN.UTF-8 export LC_ALL=zh_CN.UTF-8 # vim /etc/locale.conf LANG=zh_CN.UTF-8 # vim /etc/sysconfig/i18n LANG=zh_CN.UTF-8 # vim /etc/environment LANG=zh_CN.UTF-8 LC_ALL=zh_CN.UTF-8 source /etc/profile.d/locale.sh]]></summary></entry><entry><title type="html">undefined symbol php_json_decode_ex in unknown on line 0</title><link href="https://egsee.github.io/simple-blog/fragment/php-redis%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD" rel="alternate" type="text/html" title="undefined symbol php_json_decode_ex in unknown on line 0" /><published>2022-05-22T04:13:16+08:00</published><updated>2022-05-22T04:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/fragment/php%20redis%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD</id><content type="html" xml:base="https://egsee.github.io/simple-blog/fragment/php-redis%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD"><![CDATA[<p>通过remi安装的php<br />
+然后通过pecl安装redis扩展 报如下错误：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PHP Warning:  PHP Startup: Unable to load dynamic library <span class="s1">'redis'</span> <span class="o">(</span>tried: /opt/remi/php74/root/usr/lib64/php/modules/redis <span class="o">(</span>/opt/remi/php74/root/usr/lib64/php/modules/redis: cannot open shared object file: No such file or directory<span class="o">)</span>, /opt/remi/php74/root/usr/lib64/php/modules/redis.so <span class="o">(</span>/opt/remi/php74/root/usr/lib64/php/modules/redis.so: undefined symbol: php_json_decode_ex<span class="o">))</span> <span class="k">in </span>Unknown on line 0
 </code></pre></div></div>
+<p>这是由于redis加载顺序需要再json扩展之后<br />
+在 <code class="language-plaintext highlighter-rouge">/etc/opt/remi/php74/php.d</code> 新建 <code class="language-plaintext highlighter-rouge">redis.ini</code>，其中加入<code class="language-plaintext highlighter-rouge">extension=redis.so</code>即可。</p>
 
-<p>你可以采用如下代码访问一个包含此类结构体的缓冲：</p>
+<h3 id="参考">参考</h3>
+<p><a href="https://github.com/phpredis/phpredis/issues/1589#issuecomment-508412700">php undefined symbol</a><br />
+<a href="https://bugs.php.net/bug.php?id=67140">php bug 67140</a><br />
+<a href="https://bugs.php.net/bug.php?id=59267">php bug 59267</a><br />
+<a href="https://stackoverflow.com/questions/56998659/php-warning-redis-so-undefined-symbol-php-json-decode-ex-in-unknown-on-line-0">PHP Warning: redis.so: undefined symbol::stackoverflow</a></p>]]></content><author><name>EG</name></author><category term="fragment" /><category term="php" /><category term="linux" /><summary type="html"><![CDATA[通过remi安装的php 然后通过pecl安装redis扩展 报如下错误： PHP Warning: PHP Startup: Unable to load dynamic library 'redis' (tried: /opt/remi/php74/root/usr/lib64/php/modules/redis (/opt/remi/php74/root/usr/lib64/php/modules/redis: cannot open shared object file: No such file or directory), /opt/remi/php74/root/usr/lib64/php/modules/redis.so (/opt/remi/php74/root/usr/lib64/php/modules/redis.so: undefined symbol: php_json_decode_ex)) in Unknown on line 0 这是由于redis加载顺序需要再json扩展之后 在 /etc/opt/remi/php74/php.d 新建 redis.ini，其中加入extension=redis.so即可。 参考 php undefined symbol php bug 67140 php bug 59267 PHP Warning: redis.so: undefined symbol::stackoverflow]]></summary></entry><entry><title type="html">Docker CentOS 初始化</title><link href="https://egsee.github.io/simple-blog/fragment/Docker-CentOS%E5%88%9D%E5%A7%8B%E5%8C%96" rel="alternate" type="text/html" title="Docker CentOS 初始化" /><published>2022-05-21T04:13:16+08:00</published><updated>2022-05-21T04:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/fragment/Docker%20CentOS%E5%88%9D%E5%A7%8B%E5%8C%96</id><content type="html" xml:base="https://egsee.github.io/simple-blog/fragment/Docker-CentOS%E5%88%9D%E5%A7%8B%E5%8C%96"><![CDATA[<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--name</span> centos <span class="nt">--privileged</span><span class="o">=</span><span class="nb">true</span> <span class="nt">-d</span> centos /usr/sbin/init
+ 
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/mirrorlsit/#mirrorlist/g'</span> /etc/yum.repos.d/CentOS-<span class="k">*</span>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">ArrayBuffer</span><span class="p">(</span><span class="mi">24</span><span class="p">);</span>
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g'</span> /etc/yum.repos.d/CentOS-<span class="k">*</span>
 
-<span class="c1">// ... read the data into the buffer ...</span>
-
-<span class="kd">var</span> <span class="nx">idView</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint32Array</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">usernameView</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint8Array</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">amountDueView</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Float32Array</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-</code></pre></div></div>
-
-<p>现在你就可以通过<code class="language-plaintext highlighter-rouge">amountDueView[0]</code>的方式访问数量。</p>
-
-<blockquote>
-  <p>备注：C 语言结构体的数据对齐与平台相关。因此需要防范和考虑不同平台的字节填充对齐。</p>
-</blockquote>
-
-<h2 id="转换为普通数组">转换为普通数组</h2>
-
-<p>在处理完一个类型化数组后，有时需要把它转为普通数组，以便可以可以像普通数据一种操作访问。可以调用 <code class="language-plaintext highlighter-rouge">Array.from</code>实现这种转换，如果 <code class="language-plaintext highlighter-rouge">Array.from</code> 不支持的话，也可以通过如下代码实现：</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">typedArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint8Array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span>
-  <span class="nx">normalArray</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">typedArray</span><span class="p">);</span>
-<span class="nx">normalArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">4</span><span class="p">;</span>
-<span class="nx">normalArray</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">;</span>
-</code></pre></div></div>
-
-<h2 id="参考">参考</h2>
-
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">JavaScript typed arrays</a><br />
-<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Typed_arrays">缓冲和视图：类型数组架构</a></p>]]></content><author><name>EG</name></author><category term="frontend" /><summary type="html"><![CDATA[类型数组视图 类型化数组视图具有自描述性的名字和所有常用的数值类型像Int8，Uint32，Float64 等等。有一种特殊类型的数组Uint8ClampedArray。它仅操作 0 到 255 之间的数值。例如，这对于Canvas 数据处理非常有用。]]></summary></entry><entry><title type="html">Elasticsearch常用查询</title><link href="https://egsee.github.io/simple-blog/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2" rel="alternate" type="text/html" title="Elasticsearch常用查询" /><published>2022-05-18T00:00:00+08:00</published><updated>2022-05-18T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2</id><content type="html" xml:base="https://egsee.github.io/simple-blog/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2"><![CDATA[<h2 id="简单查询">简单查询</h2>
+yum makecache
+</code></pre></div></div>]]></content><author><name>EG</name></author><category term="fragment" /><category term="centos" /><summary type="html"><![CDATA[docker run --name centos --privileged=true -d centos /usr/sbin/init sed -i 's/mirrorlsit/#mirrorlist/g' /etc/yum.repos.d/CentOS-* sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* yum makecache]]></summary></entry><entry><title type="html">Elasticsearch常用查询</title><link href="https://egsee.github.io/simple-blog/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2" rel="alternate" type="text/html" title="Elasticsearch常用查询" /><published>2022-05-18T00:00:00+08:00</published><updated>2022-05-18T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2</id><content type="html" xml:base="https://egsee.github.io/simple-blog/elasticsearch/Elasticsearch%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%AF%A2"><![CDATA[<h2 id="简单查询">简单查询</h2>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">GET</span> <span class="o">/</span><span class="n">library</span><span class="o">/</span><span class="n">books</span><span class="o">/</span><span class="n">_search</span>
 </code></pre></div></div>
@@ -620,7 +540,160 @@
 
 <h2 id="参考">参考</h2>
 
-<p>https://blog.csdn.net/AyubLIbra/article/details/106239129</p>]]></content><author><name>EG</name></author><category term="elasticsearch" /><summary type="html"><![CDATA[简单查询 GET /library/books/_search // 查询index为library,type为books中price等于10的 GET /library/books/_search?q=price:10 // filter_path过滤返回字段 GET /library/books/_search?q=price:10&amp;filter_path=hits.total // 指定_source返回字段 GET schools/_doc/5?_source_includes=name,fees // 获取source源部分 GET schools/_doc/5?_source // 查看集群的节点 GET http://localhost:9200/_cat/?v // 查看所有索引 GET http://localhost:9200/_cat/indices?v]]></summary></entry><entry><title type="html">MappedSuperclass注解</title><link href="https://egsee.github.io/simple-blog/java/SuperMapped%E6%B3%A8%E8%A7%A3" rel="alternate" type="text/html" title="MappedSuperclass注解" /><published>2022-05-10T00:00:00+08:00</published><updated>2022-05-10T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/java/SuperMapped%E6%B3%A8%E8%A7%A3</id><content type="html" xml:base="https://egsee.github.io/simple-blog/java/SuperMapped%E6%B3%A8%E8%A7%A3"><![CDATA[<p>当进行实体类到表的映射时，有些表可能有共同的属性，它们需要一个公共的封装父类，以定义公共属性，这时候就需要<code class="language-plaintext highlighter-rouge">MappedSuperclass</code>这个注解。
+<p>https://blog.csdn.net/AyubLIbra/article/details/106239129</p>]]></content><author><name>EG</name></author><category term="elasticsearch" /><summary type="html"><![CDATA[简单查询 GET /library/books/_search // 查询index为library,type为books中price等于10的 GET /library/books/_search?q=price:10 // filter_path过滤返回字段 GET /library/books/_search?q=price:10&amp;filter_path=hits.total // 指定_source返回字段 GET schools/_doc/5?_source_includes=name,fees // 获取source源部分 GET schools/_doc/5?_source // 查看集群的节点 GET http://localhost:9200/_cat/?v // 查看所有索引 GET http://localhost:9200/_cat/indices?v]]></summary></entry><entry><title type="html">Javascript typed arrays</title><link href="https://egsee.github.io/simple-blog/frontend/TypedArrays" rel="alternate" type="text/html" title="Javascript typed arrays" /><published>2022-05-18T00:00:00+08:00</published><updated>2022-05-18T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/frontend/TypedArrays</id><content type="html" xml:base="https://egsee.github.io/simple-blog/frontend/TypedArrays"><![CDATA[<p><img src="/simple-blog/assets/img/posts/typedArray1.png" alt="图片" /></p>
+
+<h2 id="类型数组视图">类型数组视图</h2>
+<p>类型化数组视图具有自描述性的名字和所有常用的数值类型像<code class="language-plaintext highlighter-rouge">Int8</code>，<code class="language-plaintext highlighter-rouge">Uint32</code>，<code class="language-plaintext highlighter-rouge">Float64</code> 等等。有一种特殊类型的数组<code class="language-plaintext highlighter-rouge">Uint8ClampedArray</code>。它仅操作 0 到 255 之间的数值。例如，这对于<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/ImageData">Canvas 数据处理</a>非常有用。</p>
+
+<!-- more -->
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Value Range</th>
+      <th style="text-align: left">Size in bytes</th>
+      <th style="text-align: left">Description</th>
+      <th style="text-align: left">Web IDL type</th>
+      <th style="text-align: left">Equivalent C type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array"><code class="language-plaintext highlighter-rouge">Int8Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-128</code> to <code class="language-plaintext highlighter-rouge">127</code></td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">8-bit two’s complement signed integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">byte</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int8_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"><code class="language-plaintext highlighter-rouge">Uint8Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">255</code></td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">8-bit unsigned integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">octet</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint8_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray"><code class="language-plaintext highlighter-rouge">Uint8ClampedArray</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">255</code></td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">8-bit unsigned integer (clamped)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">octet</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint8_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array"><code class="language-plaintext highlighter-rouge">Int16Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-32768</code> to <code class="language-plaintext highlighter-rouge">32767</code></td>
+      <td style="text-align: left">2</td>
+      <td style="text-align: left">16-bit two’s complement signed integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">short</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int16_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array"><code class="language-plaintext highlighter-rouge">Uint16Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">65535</code></td>
+      <td style="text-align: left">2</td>
+      <td style="text-align: left">16-bit unsigned integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unsigned short</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint16_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array"><code class="language-plaintext highlighter-rouge">Int32Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-2147483648</code> to <code class="language-plaintext highlighter-rouge">2147483647</code></td>
+      <td style="text-align: left">4</td>
+      <td style="text-align: left">32-bit two’s complement signed integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">long</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int32_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array"><code class="language-plaintext highlighter-rouge">Uint32Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">4294967295</code></td>
+      <td style="text-align: left">4</td>
+      <td style="text-align: left">32-bit unsigned integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unsigned long</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">uint32_t</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code class="language-plaintext highlighter-rouge">Float32Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-3.4E38</code> to <code class="language-plaintext highlighter-rouge">3.4E38</code> and <code class="language-plaintext highlighter-rouge">1.2E-38</code> is the min positive number</td>
+      <td style="text-align: left">4</td>
+      <td style="text-align: left">32-bit IEEE floating point number (7 significant digits e.g., <code class="language-plaintext highlighter-rouge">1.234567</code>)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unrestricted float</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">float</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array"><code class="language-plaintext highlighter-rouge">Float64Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-1.8E308</code> to <code class="language-plaintext highlighter-rouge">1.8E308</code> and <code class="language-plaintext highlighter-rouge">5E-324</code> is the min positive number</td>
+      <td style="text-align: left">8</td>
+      <td style="text-align: left">64-bit IEEE floating point number (16 significant digits e.g., <code class="language-plaintext highlighter-rouge">1.23456789012345</code>)</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">unrestricted double</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">double</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt64Array"><code class="language-plaintext highlighter-rouge">BigInt64Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">-2^63</code> to <code class="language-plaintext highlighter-rouge">2^63 - 1</code></td>
+      <td style="text-align: left">8</td>
+      <td style="text-align: left">64-bit two’s complement signed integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bigint</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">int64_t (signed long long)</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigUint64Array"><code class="language-plaintext highlighter-rouge">BigUint64Array</code></a></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">2^64 - 1</code></td>
+      <td style="text-align: left">8</td>
+      <td style="text-align: left">64-bit unsigned integer</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">bigint</code></td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="使用复杂的数据结构">使用复杂的数据结构</h2>
+
+<p>通过将缓冲与不同类型视图组合，以及修改内存访问的偏移位置，你可以操作包含更多更复杂数据结构的数据。你可以使用 <code class="language-plaintext highlighter-rouge">js-ctypes</code> 操作诸如 <code class="language-plaintext highlighter-rouge">WebGL</code>，数据文件或 C 语言结构体这些复杂的数据结构。</p>
+
+<p>请看如下的 C 语言结构:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">someStruct</span> <span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">id</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">username</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+  <span class="kt">float</span> <span class="n">amountDue</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>你可以采用如下代码访问一个包含此类结构体的缓冲：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">ArrayBuffer</span><span class="p">(</span><span class="mi">24</span><span class="p">);</span>
+
+<span class="c1">// ... read the data into the buffer ...</span>
+
+<span class="kd">var</span> <span class="nx">idView</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint32Array</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">usernameView</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint8Array</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">amountDueView</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Float32Array</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>现在你就可以通过<code class="language-plaintext highlighter-rouge">amountDueView[0]</code>的方式访问数量。</p>
+
+<blockquote>
+  <p>备注：C 语言结构体的数据对齐与平台相关。因此需要防范和考虑不同平台的字节填充对齐。</p>
+</blockquote>
+
+<h2 id="转换为普通数组">转换为普通数组</h2>
+
+<p>在处理完一个类型化数组后，有时需要把它转为普通数组，以便可以可以像普通数据一种操作访问。可以调用 <code class="language-plaintext highlighter-rouge">Array.from</code>实现这种转换，如果 <code class="language-plaintext highlighter-rouge">Array.from</code> 不支持的话，也可以通过如下代码实现：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">typedArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Uint8Array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span>
+  <span class="nx">normalArray</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">typedArray</span><span class="p">);</span>
+<span class="nx">normalArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">4</span><span class="p">;</span>
+<span class="nx">normalArray</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">JavaScript typed arrays</a><br />
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Typed_arrays">缓冲和视图：类型数组架构</a></p>]]></content><author><name>EG</name></author><category term="frontend" /><summary type="html"><![CDATA[类型数组视图 类型化数组视图具有自描述性的名字和所有常用的数值类型像Int8，Uint32，Float64 等等。有一种特殊类型的数组Uint8ClampedArray。它仅操作 0 到 255 之间的数值。例如，这对于Canvas 数据处理非常有用。]]></summary></entry><entry><title type="html">MappedSuperclass注解</title><link href="https://egsee.github.io/simple-blog/java/SuperMapped%E6%B3%A8%E8%A7%A3" rel="alternate" type="text/html" title="MappedSuperclass注解" /><published>2022-05-10T00:00:00+08:00</published><updated>2022-05-10T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/java/SuperMapped%E6%B3%A8%E8%A7%A3</id><content type="html" xml:base="https://egsee.github.io/simple-blog/java/SuperMapped%E6%B3%A8%E8%A7%A3"><![CDATA[<p>当进行实体类到表的映射时，有些表可能有共同的属性，它们需要一个公共的封装父类，以定义公共属性，这时候就需要<code class="language-plaintext highlighter-rouge">MappedSuperclass</code>这个注解。
 它表示，该类不是一个实体类，但继承它属性的实体类会将其属性映射到数据表中。</p>
 
 <p>可以使用<code class="language-plaintext highlighter-rouge">@AttributeOverrides</code>注解重定义父类的属性，如下：
@@ -734,54 +807,62 @@
 </code></pre></div></div>
 <p>uniqueConstraints是数组，可指定多组约束：</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Table</span><span class="o">(</span><span class="n">name</span><span class="o">=</span><span class="s">"cusotmers"</span><span class="o">,</span> <span class="n">uniqueConstraints</span><span class="o">={</span><span class="nd">@UniqueConstraint</span><span class="o">(</span><span class="n">columnNames</span><span class="o">={</span><span class="s">"name,email"</span><span class="o">}),</span><span class="nd">@UniqueConstraint</span><span class="o">(</span><span class="n">columnNames</span><span class="o">={</span><span class="s">"name"</span><span class="o">})})</span>
-</code></pre></div></div>]]></content><author><name>EG</name></author><category term="java" /><summary type="html"><![CDATA[当实体类与其映射表的表名不同的时候，通常会使用@Table标注说明。 指定表名 @Table(name="customers") @Entity public class Customer { @Id @GeneratedValue(strategy=GenearationType.IDENTITY) private Integer id; private String name; private String email; } 对应 DDL: CREATE TABLE `customers`( `ID` INT(11) NOT NULL AUTO_INCREMENT, `Name` VARCHAR(255) DEFAULT NULL, `Email` VARCHAR(255) DEFAULT NULL, PRIMARY KEY(`ID`) )ENGINE=INNODB DEFAULT CHARSET=utf8;]]></summary></entry><entry><title type="html">Docker Entrypoint</title><link href="https://egsee.github.io/simple-blog/docker/docker-entrypoint" rel="alternate" type="text/html" title="Docker Entrypoint" /><published>2022-01-01T00:00:00+08:00</published><updated>2022-01-01T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/docker/docker%20entrypoint</id><content type="html" xml:base="https://egsee.github.io/simple-blog/docker/docker-entrypoint"><![CDATA[<h3 id="redis-entrypoint-example">redis entrypoint example</h3>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
-...
-<span class="c"># allow the container to be started with `--user`</span>
-<span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">=</span> <span class="s1">'redis-server'</span> <span class="nt">-a</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">id</span> <span class="nt">-u</span><span class="si">)</span><span class="s2">"</span> <span class="o">=</span> <span class="s1">'0'</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
-	</span>find <span class="nb">.</span> <span class="se">\!</span> <span class="nt">-user</span> redis <span class="nt">-exec</span> <span class="nb">chown </span>redis <span class="s1">'{}'</span> +
-	<span class="nb">exec </span>gosu redis <span class="s2">"</span><span class="nv">$0</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
-<span class="k">fi
-
-</span><span class="nb">exec</span> <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
-</code></pre></div></div>
-<!-- more -->
-
-<p>该脚本的内容就是根据 CMD 的内容来判断，如果是 redis-server 的话，则切换到 redis 用户身份启动服务器，否则依旧使用 root 身份执行。比如：</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> redis <span class="nb">id
-</span><span class="nv">uid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span> <span class="nb">groups</span><span class="o">=</span>0<span class="o">(</span>root<span class="o">)</span>
+</code></pre></div></div>]]></content><author><name>EG</name></author><category term="java" /><summary type="html"><![CDATA[当实体类与其映射表的表名不同的时候，通常会使用@Table标注说明。 指定表名 @Table(name="customers") @Entity public class Customer { @Id @GeneratedValue(strategy=GenearationType.IDENTITY) private Integer id; private String name; private String email; } 对应 DDL: CREATE TABLE `customers`( `ID` INT(11) NOT NULL AUTO_INCREMENT, `Name` VARCHAR(255) DEFAULT NULL, `Email` VARCHAR(255) DEFAULT NULL, PRIMARY KEY(`ID`) )ENGINE=INNODB DEFAULT CHARSET=utf8;]]></summary></entry><entry><title type="html">centos nginx install</title><link href="https://egsee.github.io/simple-blog/fragment/centos-nginx-install" rel="alternate" type="text/html" title="centos nginx install" /><published>2022-01-22T04:13:16+08:00</published><updated>2022-01-22T04:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/fragment/centos%20nginx%20install</id><content type="html" xml:base="https://egsee.github.io/simple-blog/fragment/centos-nginx-install"><![CDATA[<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install</span> <span class="nt">-y</span> wget 
+yum <span class="nb">install</span> <span class="nt">-y</span> gcc-c++  pcre pcre-devel zlib zlib-devel openssl openssl-devel
+yum <span class="nb">install</span> <span class="nt">-y</span> gcc automake autoconf libtool make //automake
+wget <span class="nt">-c</span> https://nginx.org/download/nginx-1.23.0.tar.gz
 </code></pre></div></div>
 
-<h3 id="postgres">postgres</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure --prefix=/usr/local/nginx
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-<span class="nb">set</span> <span class="nt">-e</span>
+//...
 
-<span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">=</span> <span class="s1">'postgres'</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
-    </span><span class="nb">chown</span> <span class="nt">-R</span> postgres <span class="s2">"</span><span class="nv">$PGDATA</span><span class="s2">"</span>
+Configuration summary
+  + using system PCRE2 library
+  + OpenSSL library is not used
+  + using system zlib library
 
-    <span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">ls</span> <span class="nt">-A</span> <span class="s2">"</span><span class="nv">$PGDATA</span><span class="s2">"</span><span class="si">)</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
-        </span>gosu postgres initdb
-    <span class="k">fi
+  nginx path prefix: "/usr/local/nginx"
+  nginx binary file: "/usr/local/nginx/sbin/nginx"
+  nginx modules path: "/usr/local/nginx/modules"
+  nginx configuration prefix: "/usr/local/nginx/conf"
+  nginx configuration file: "/usr/local/nginx/conf/nginx.conf"
+  nginx pid file: "/usr/local/nginx/logs/nginx.pid"
+  nginx error log file: "/usr/local/nginx/logs/error.log"
+  nginx http access log file: "/usr/local/nginx/logs/access.log"
+  nginx http client request body temporary files: "client_body_temp"
+  nginx http proxy temporary files: "proxy_temp"
+  nginx http fastcgi temporary files: "fastcgi_temp"
+  nginx http uwsgi temporary files: "uwsgi_temp"
+  nginx http scgi temporary files: "scgi_temp"
 
-    </span><span class="nb">exec </span>gosu postgres <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
-<span class="k">fi
+</code></pre></div></div>
 
-</span><span class="nb">exec</span> <span class="s2">"</span><span class="nv">$@</span><span class="s2">
-</span></code></pre></div></div>
+<h3 id="add-ngx_http_echo_module">add ngx_http_echo_module</h3>
 
-<blockquote>
-  <p>注意：该脚本使用了 Bash 的内置命令 exec，所以最后运行的进程就是容器的 PID 为 1 的进程。这样，进程就可以接收到任何发送给容器的 Unix 信号了。</p>
-</blockquote>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-c</span> https://github.com/openresty/echo-nginx-module/releases/tag/v0.62
+<span class="nb">tar</span> <span class="nt">-zxvf</span> v0.62
 
-<p>该辅助脚本被拷贝到容器，并在容器启动时通过 ENTRYPOINT 执行：</p>
+<span class="nb">cd</span> /path/to/nginx-resource
+<span class="c"># 生成makefile</span>
+./configure <span class="nt">--prefix</span><span class="o">=</span>/usr/local/nginx <span class="se">\</span>
+ <span class="nt">--modules-path</span><span class="o">=</span>/usr/local/nginx/modules <span class="se">\</span>
+ <span class="nt">--with-http_ssl_module</span> <span class="se">\</span>
+ <span class="nt">--with-http_stub_status_module</span> <span class="se">\</span>
+ <span class="nt">--add-dynamic-module</span><span class="o">=</span>/path/to/echo-nginx-module
 
-<div class="language-docker highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">COPY</span><span class="s"> ./docker-entrypoint.sh /</span>
+<span class="c">#</span>
+make
 
-<span class="k">ENTRYPOINT</span><span class="s"> ["/docker-entrypoint.sh"]</span>
-</code></pre></div></div>]]></content><author><name>EG</name></author><category term="docker" /><category term="dockerfile" /><category term="docker" /><summary type="html"><![CDATA[redis entrypoint example #!/bin/sh ... # allow the container to be started with `--user` if [ "$1" = 'redis-server' -a "$(id -u)" = '0' ]; then find . \! -user redis -exec chown redis '{}' + exec gosu redis "$0" "$@" fi exec "$@"]]></summary></entry><entry><title type="html">Go edit replace</title><link href="https://egsee.github.io/simple-blog/go/Go-edit-replace" rel="alternate" type="text/html" title="Go edit replace" /><published>2022-01-01T00:00:00+08:00</published><updated>2022-01-01T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/go/Go%20edit%20replace</id><content type="html" xml:base="https://egsee.github.io/simple-blog/go/Go-edit-replace"><![CDATA[<p>如果一个go模块尚未发布，我们无法直接使用模块路径进行导入。这时候可以使用go mod edit。假设<code class="language-plaintext highlighter-rouge">exmaple.com/hello</code>依赖于<code class="language-plaintext highlighter-rouge">example.com/greeting</code></p>
+<span class="c"># 复制.so</span>
+<span class="nb">cp </span>objs/ngx_http_echo_module.so /usr/local/nginx/modules
+
+<span class="c"># nginx.conf</span>
+load_module /usr/local/nginx/modules/ngx_http_echo_module.so<span class="p">;</span>
+
+<span class="c"># start</span>
+nginx <span class="nt">-c</span> /usr/local/nginx/conf/nginx.conf
+</code></pre></div></div>]]></content><author><name>EG</name></author><category term="fragment" /><category term="centos" /><summary type="html"><![CDATA[yum install -y wget yum install -y gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel yum install -y gcc automake autoconf libtool make //automake wget -c https://nginx.org/download/nginx-1.23.0.tar.gz ./configure --prefix=/usr/local/nginx //... Configuration summary + using system PCRE2 library + OpenSSL library is not used + using system zlib library nginx path prefix: "/usr/local/nginx" nginx binary file: "/usr/local/nginx/sbin/nginx" nginx modules path: "/usr/local/nginx/modules" nginx configuration prefix: "/usr/local/nginx/conf" nginx configuration file: "/usr/local/nginx/conf/nginx.conf" nginx pid file: "/usr/local/nginx/logs/nginx.pid" nginx error log file: "/usr/local/nginx/logs/error.log" nginx http access log file: "/usr/local/nginx/logs/access.log" nginx http client request body temporary files: "client_body_temp" nginx http proxy temporary files: "proxy_temp" nginx http fastcgi temporary files: "fastcgi_temp" nginx http uwsgi temporary files: "uwsgi_temp" nginx http scgi temporary files: "scgi_temp" add ngx_http_echo_module wget -c https://github.com/openresty/echo-nginx-module/releases/tag/v0.62 tar -zxvf v0.62 cd /path/to/nginx-resource # 生成makefile ./configure --prefix=/usr/local/nginx \ --modules-path=/usr/local/nginx/modules \ --with-http_ssl_module \ --with-http_stub_status_module \ --add-dynamic-module=/path/to/echo-nginx-module # make # 复制.so cp objs/ngx_http_echo_module.so /usr/local/nginx/modules # nginx.conf load_module /usr/local/nginx/modules/ngx_http_echo_module.so; # start nginx -c /usr/local/nginx/conf/nginx.conf]]></summary></entry><entry><title type="html">Go edit replace</title><link href="https://egsee.github.io/simple-blog/go/Go-edit-replace" rel="alternate" type="text/html" title="Go edit replace" /><published>2022-01-01T00:00:00+08:00</published><updated>2022-01-01T00:00:00+08:00</updated><id>https://egsee.github.io/simple-blog/go/Go%20edit%20replace</id><content type="html" xml:base="https://egsee.github.io/simple-blog/go/Go-edit-replace"><![CDATA[<p>如果一个go模块尚未发布，我们无法直接使用模块路径进行导入。这时候可以使用go mod edit。假设<code class="language-plaintext highlighter-rouge">exmaple.com/hello</code>依赖于<code class="language-plaintext highlighter-rouge">example.com/greeting</code></p>
 
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// 其中 ../greetings 为文件夹路径，可以与模块名不同</span>
 <span class="err">$</span> <span class="k">go</span> <span class="n">mod</span> <span class="n">edit</span> <span class="o">-</span><span class="n">repalce</span> <span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">greeting</span><span class="o">=../</span><span class="n">greetings</span>
@@ -793,530 +874,4 @@
 <div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">replace</span> <span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">greetings</span> <span class="o">=&gt;</span> <span class="o">../</span><span class="n">greetings</span>
 
 <span class="n">require</span> <span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">greetings</span> <span class="n">v0</span><span class="m">.0.0</span><span class="o">-</span><span class="m">00010101000000</span><span class="o">-</span><span class="m">000000000000</span>
-</code></pre></div></div>]]></content><author><name>EG</name></author><category term="go" /><category term="go" /><summary type="html"><![CDATA[如果一个go模块尚未发布，我们无法直接使用模块路径进行导入。这时候可以使用go mod edit。假设exmaple.com/hello依赖于example.com/greeting // 其中 ../greetings 为文件夹路径，可以与模块名不同 $ go mod edit -repalce example.com/greeting=../greetings // 然后运行 $ go mod tidy]]></summary></entry><entry><title type="html">Go数组和切片</title><link href="https://egsee.github.io/simple-blog/go/Go%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87" rel="alternate" type="text/html" title="Go数组和切片" /><published>2021-12-02T03:13:16+08:00</published><updated>2021-12-02T03:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/go/Go%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87</id><content type="html" xml:base="https://egsee.github.io/simple-blog/go/Go%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87"><![CDATA[<h2 id="数组">数组</h2>
-<h3 id="数组的定义">数组的定义</h3>
-
-<p>Go 数组是具有相同 唯一类型 的一组已编号且长度固定的数据项序列</p>
-
-<h3 id="声明方式">声明方式</h3>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="m">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">}</span>
-<span class="c">//or</span>
-<span class="n">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">}</span>
-</code></pre></div></div>
-<!-- more -->
-
-<p>数组声明后值分配为零，在内存中是连续固定不可变的区域。
-数组是值类型，意味着传递数组会重新复制一份传递，这和 C 或 Java 有所不同
-<img src="/simple-blog/assets/img/posts/go-arr.png" alt="" />
-<!-- more --></p>
-<h3 id="示例">示例</h3>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="s">"fmt"</span>
-
-<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-   <span class="k">var</span> <span class="n">arr1</span> <span class="p">[</span><span class="m">5</span><span class="p">]</span><span class="kt">int</span>
-
-   <span class="k">for</span> <span class="n">i</span><span class="o">:=</span><span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-       <span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="m">2</span>
-   <span class="p">}</span>
-
-   <span class="k">for</span> <span class="n">i</span><span class="o">:=</span><span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-       <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Array at index %d is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="切片">切片</h2>
-
-<h3 id="定义">定义</h3>
-
-<p>切片（slice）是对数组一个连续片段的引用，其底层是数组，所以切片是一个引用类型（因此更类似于 C/C++ 中的数组类型，或者 Python 中的 list 类型），可以将其理解为一个可变数组。</p>
-
-<h3 id="声明和定义">声明和定义</h3>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// 长度3 容量5的切片</span>
-<span class="n">s1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
-<span class="c">//</span>
-<span class="n">s2</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">}</span>
-<span class="n">s3</span> <span class="o">:=</span> <span class="n">s1</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]</span>
-
-<span class="c">//定义数组</span>
-<span class="n">arr</span> <span class="o">:=</span> <span class="p">[</span><span class="m">3</span><span class="p">]{</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">}</span>
-<span class="n">s</span> <span class="o">:=</span> <span class="n">a</span><span class="p">[</span><span class="o">:</span><span class="p">]</span> <span class="c">//转换为slice</span>
-<span class="n">s</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span> <span class="c">// s = {1,2,3,4,5}</span>
-<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
-</code></pre></div></div>
-
-<h3 id="内存示意">内存示意</h3>
-
-<p><img src="/simple-blog/assets/img/posts/go-arr.png" alt="" /></p>
-<h3 id="例子">例子</h3>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="s">"fmt"</span>
-
-<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">var</span> <span class="n">arr1</span> <span class="p">[</span><span class="m">6</span><span class="p">]</span><span class="kt">int</span>
-    <span class="k">var</span> <span class="n">slice1</span> <span class="p">[]</span><span class="kt">int</span> <span class="o">=</span> <span class="n">arr1</span><span class="p">[</span><span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">]</span> <span class="c">// item at index 5 not included!</span>
-
-    <span class="c">// load the array with integers: 0,1,2,3,4,5</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-    <span class="p">}</span>
-
-    <span class="c">// print the slice</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">slice1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Slice at %d is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">slice1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="p">}</span>
-
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"The length of arr1 is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr1</span><span class="p">))</span>
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"The length of slice1 is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">slice1</span><span class="p">))</span>
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"The capacity of slice1 is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="nb">cap</span><span class="p">(</span><span class="n">slice1</span><span class="p">))</span>
-
-    <span class="c">// grow the slice</span>
-    <span class="n">slice1</span> <span class="o">=</span> <span class="n">slice1</span><span class="p">[</span><span class="m">0</span><span class="o">:</span><span class="m">4</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">slice1</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Slice at %d is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">slice1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="p">}</span>
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"The length of slice1 is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">slice1</span><span class="p">))</span>
-    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"The capacity of slice1 is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="nb">cap</span><span class="p">(</span><span class="n">slice1</span><span class="p">))</span>
-
-    <span class="c">// grow the slice beyond capacity</span>
-    <span class="c">//slice1 = slice1[0:7 ] // panic: runtime error: slice bound out of range</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="slicing-细节">slicing 细节</h3>
-
-<p>s := make([]int, 5)，s 底层即为上图的数据结构。ptr 是一个指针，指向底层对应的数组。len 是切片的长度 5，cap 是底层数组的容量 5。</p>
-
-<p>当我们执行下面语句时 ：</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s2</span> <span class="o">:=</span> <span class="n">s</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]</span>
-</code></pre></div></div>
-
-<p>做 slicing 的时候，go 会新建一个 slice 值 s2，而底层的数据是不动的。s2 如上图深蓝色，通过更改指针、长度和容量来进行 slicing。这也就是为什么 slicing 的性能非常高的原因。</p>
-
-<p>一个 slice 不能越过 cap 进行操作，这个我们从底层很容易理解，因为就相当于越过底层数组的上界进行非法访问了。</p>
-
-<h3 id="切片扩容">切片扩容</h3>
-
-<p>使用内部函数 append 来往切片 slice 后动态追加元素，当 cap 不够时，如果 reslice 后可以放下，那么它会 reslice。例如上面的 s2，底层的数组足以再追加 2 个元素。如果不行，那么它会 new 一个新的底层数组，大小为之前 cap 的两倍，并将之前的元素复制进去:</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">s</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">7</span><span class="p">)</span>
-<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="c">// 输出7 10</span>
-<span class="n">s</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">11</span><span class="p">)</span>
-<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="c">//输出11 20</span>
-<span class="n">如果要追加一个slice到另一个slice的话</span><span class="err">，</span><span class="n">这样</span><span class="err">：</span>
-
-<span class="n">s5</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
-<span class="n">s6</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="m">11</span><span class="p">,</span> <span class="m">22</span><span class="p">,</span> <span class="m">33</span><span class="p">,</span> <span class="m">44</span><span class="p">,</span> <span class="m">55</span><span class="p">,</span> <span class="m">66</span><span class="p">}</span>
-<span class="n">s</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="n">s5</span><span class="p">,</span> <span class="n">s6</span><span class="o">...</span><span class="p">)</span>
-<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">cap</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="c">//输出[0 0 0 0 0 11 22 33 44 55 66] 11 12</span>
-</code></pre></div></div>
-
-<h3 id="使用注意">使用注意</h3>
-
-<p>在这样的场景下注意：如果我们只用到一个 slice 的一小部分，那么底层的整个数组也将继续保存在内存当中。当这个底层数组很大，或者这样的场景很多时，可能会造成内存急剧增加，造成崩溃。</p>
-
-<p>所以在这样的场景下，我们可以将需要的分片复制到一个新的 slice 中去，减少内存的占用。例如一个很大的切片 data 里，我们需要的数据是 data[m:n]，那么我们创建一个新的 slice 变量 r，将数据复制到 r 中返回。</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mydata</span> <span class="o">:=</span> <span class="n">data</span><span class="p">[</span><span class="n">m</span><span class="o">:</span><span class="n">n</span><span class="p">]</span>
-<span class="n">r</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">mydata</span><span class="p">))</span>
-<span class="nb">copy</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">mydata</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">r</span>
-</code></pre></div></div>
-
-<h2 id="举例区别">举例区别</h2>
-
-<p>切片：</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">numbers</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">}</span>
-
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">numbers</span> <span class="p">{</span>
-
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="o">-</span><span class="m">1</span> <span class="p">{</span>
-
-        <span class="n">numbers</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">e</span>
-
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-        <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="m">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">e</span>
-
-    <span class="p">}</span>
-
-<span class="p">}</span>
-<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="c">// [22 3 6 10 15 21]</span>
-</code></pre></div></div>
-
-<p>数组：</p>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">numbers</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">}</span>
-
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">numbers</span> <span class="p">{</span>
-
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="o">-</span><span class="m">1</span> <span class="p">{</span>
-
-        <span class="n">numbers</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">e</span>
-
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-        <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="m">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">e</span>
-
-    <span class="p">}</span>
-
-<span class="p">}</span>
-
-<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="c">// [7 3 5 7 9 11]</span>
-</code></pre></div></div>
-
-<p>遍历时数组类型是值类型，而切片是指针类型，每次传递的是指针，所以每次累加，都是改变后的值来累加。</p>
-
-<h2 id="使用-benchmark-展示-slice-内存使用">使用 Benchmark 展示 slice 内存使用</h2>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
-
-<span class="k">import</span> <span class="p">(</span>
-	<span class="s">"math/rand"</span>
-	<span class="s">"testing"</span>
-	<span class="s">"time"</span>
-<span class="p">)</span>
-
-<span class="k">func</span> <span class="n">generateWithCap</span><span class="p">(</span><span class="n">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
-	<span class="n">rand</span><span class="o">.</span><span class="n">Seed</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="o">.</span><span class="n">UnixNano</span><span class="p">())</span>
-	<span class="n">nums</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-	<span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-		<span class="n">nums</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">rand</span><span class="o">.</span><span class="n">Int</span><span class="p">())</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">nums</span>
-<span class="p">}</span>
-
-<span class="k">func</span> <span class="n">generate</span><span class="p">(</span><span class="n">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
-	<span class="n">rand</span><span class="o">.</span><span class="n">Seed</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="o">.</span><span class="n">UnixNano</span><span class="p">())</span>
-	<span class="n">nums</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
-	<span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
-		<span class="n">nums</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">rand</span><span class="o">.</span><span class="n">Int</span><span class="p">())</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">nums</span>
-<span class="p">}</span>
-
-<span class="k">func</span> <span class="n">BenchmarkGenerateWithCap</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span><span class="n">testing</span><span class="o">.</span><span class="n">B</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">for</span> <span class="n">n</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="n">N</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span> <span class="p">{</span>
-		<span class="n">generateWithCap</span><span class="p">(</span><span class="m">1000000</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">func</span> <span class="n">BenchmarkGenerate</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span><span class="n">testing</span><span class="o">.</span><span class="n">B</span><span class="p">)</span> <span class="p">{</span>
-	<span class="k">for</span> <span class="n">n</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="n">N</span><span class="p">;</span> <span class="n">n</span><span class="o">++</span> <span class="p">{</span>
-		<span class="n">generate</span><span class="p">(</span><span class="m">1000000</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-<p>运行结果：</p>
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">go</span> <span class="n">test</span> <span class="o">-</span><span class="n">bench</span><span class="o">=</span><span class="err">'</span><span class="n">Generate</span><span class="err">'</span> <span class="o">.</span>
-<span class="n">goos</span><span class="o">:</span> <span class="n">darwin</span>
-<span class="n">goarch</span><span class="o">:</span> <span class="n">amd64</span>
-<span class="n">pkg</span><span class="o">:</span> <span class="n">example</span>
-<span class="n">BenchmarkGenerateWithCap</span><span class="o">-</span><span class="m">8</span>            <span class="m">44</span>          <span class="m">24294582</span> <span class="n">ns</span><span class="o">/</span><span class="n">op</span>
-<span class="n">BenchmarkGenerate</span><span class="o">-</span><span class="m">8</span>                   <span class="m">34</span>          <span class="m">30342763</span> <span class="n">ns</span><span class="o">/</span><span class="n">op</span>
-<span class="n">PASS</span>
-<span class="n">ok</span>      <span class="n">example</span> <span class="m">2.171</span><span class="n">s</span>
-</code></pre></div></div>
-<p>可以看到生成 100w 个数字的随机序列，GenerateWithCap 的耗时比 Generate 少 20%。
-使用 -benchmem 参数看到内存分配的情况：</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>goos: darwin
-goarch: amd64
-pkg: example
-BenchmarkGenerateWithCap-8  43  24335658 ns/op  8003641 B/op    1 allocs/op
-BenchmarkGenerate-8         33  30403687 ns/op  45188395 B/op  40 allocs/op
-PASS
-ok      example 2.121s
-</code></pre></div></div>
-<p>Generate 分配的内存是 GenerateWithCap 的 6 倍，设置了切片容量，内存只分配一次，而不设置切片容量，内存分配了 40 次。</p>
-
-<p>参考：
-<a href="https://geektutu.com/post/hpg-benchmark.html">Go语言高性能编程</a>
-<a href="https://zhuanlan.zhihu.com/p/78747815">数组和切片</a>
-<a href="https://cloud.tencent.com/developer/article/1354294">搞懂golang中的数组和切片slice</a></p>]]></content><author><name>EG</name></author><category term="go" /><category term="go" /><summary type="html"><![CDATA[数组 数组的定义 Go 数组是具有相同 唯一类型 的一组已编号且长度固定的数据项序列 声明方式 arr := [3]int{1,2,3} //or arr := [...]int{1,2,3,4,5}]]></summary></entry><entry><title type="html">Java T 和 T的区别</title><link href="https://egsee.github.io/simple-blog/java/java-T" rel="alternate" type="text/html" title="Java T 和 T的区别" /><published>2021-09-30T21:01:16+08:00</published><updated>2021-09-30T21:01:16+08:00</updated><id>https://egsee.github.io/simple-blog/java/java%3CT%3E</id><content type="html" xml:base="https://egsee.github.io/simple-blog/java/java-T"><![CDATA[<h2 id="导读">导读</h2>
-<p>最近在看Java的过程中对形如<code class="language-plaintext highlighter-rouge">public &lt;T&gt; T get(...)</code>的写法感到困惑，在网上很难找到合理解释。</p>
-<h2 id="分析">分析</h2>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="no">T</span> <span class="nf">readObjectData</span><span class="o">(</span><span class="nc">ByteBuffer</span> <span class="n">buffer</span><span class="o">,</span> <span class="nc">Class</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">type</span><span class="o">)</span> 
-</code></pre></div></div>
-<!-- more -->
-<p>在上面这个方法中
-<code class="language-plaintext highlighter-rouge">&lt;T&gt;</code>代表声明了一个 通用的泛型参数<code class="language-plaintext highlighter-rouge">T</code>
-<code class="language-plaintext highlighter-rouge">T</code>作为一个实际的占位符，代表返回值为<code class="language-plaintext highlighter-rouge">T</code>类型，实际返回类型只会在使用<code class="language-plaintext highlighter-rouge">非泛型</code>类型参数调用时才会确定。
-如果这里不定义<code class="language-plaintext highlighter-rouge">&lt;T&gt;</code>,那么编译器将认为类型<code class="language-plaintext highlighter-rouge">T</code>不存在。
-举例来说：
-如果你传递<code class="language-plaintext highlighter-rouge">Class&lt;String&gt;</code>类型则返回的就是<code class="language-plaintext highlighter-rouge">String类型</code>、传递<code class="language-plaintext highlighter-rouge">Class&lt;Double&gt;</code>则返回<code class="language-plaintext highlighter-rouge">Dubbo</code>类型：</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">obj1</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">readObjectData</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="nc">String</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-<span class="nc">MyClass</span> <span class="n">obj2</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">readObjectData</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="nc">MyClass</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</code></pre></div></div>
-<h2 id="扩展">扩展</h2>
-<p>大多数初学者有这样的疑惑，估计是还有以下这种类似让人迷惑的写法：</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyClass</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
-   <span class="kd">private</span> <span class="no">T</span> <span class="nf">myMethod</span><span class="o">(</span><span class="no">T</span> <span class="n">a</span><span class="o">){</span>
-       <span class="k">return</span>  <span class="n">a</span><span class="o">;</span>
-   <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-<p>这样写因为在类上已经定义了<code class="language-plaintext highlighter-rouge">&lt;T&gt;</code>泛型参数，所以无需重复定义，如果你这样写：</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyClass</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
-   <span class="kd">private</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="no">T</span> <span class="nf">myMethod</span><span class="o">(</span><span class="no">T</span> <span class="n">a</span><span class="o">){</span>
-       <span class="k">return</span>  <span class="n">a</span><span class="o">;</span>
-   <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-<p>那么<code class="language-plaintext highlighter-rouge">myMethod</code>将返回的泛型类型可能不与<code class="language-plaintext highlighter-rouge">MyClass</code>相同，实际上像以下这样定义可能更加清晰：</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyClass</span><span class="o">&lt;</span><span class="no">T1</span><span class="o">&gt;</span> <span class="o">{</span>
-   <span class="kd">private</span> <span class="o">&lt;</span><span class="no">T2</span><span class="o">&gt;</span> <span class="no">T2</span> <span class="nf">myMethod</span><span class="o">(</span><span class="no">T2</span> <span class="n">a</span><span class="o">){</span>
-       <span class="k">return</span>  <span class="n">a</span><span class="o">;</span>
-   <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="参考">参考</h2>
-<p><a href="https://stackoverflow.com/questions/15888551/how-to-interpret-public-t-t-readobjectdata-classt-type-in-java">How to interpret “public &lt;T&gt; T” in Java</a><br />
-<a href="https://docs.oracle.com/javase/tutorial/extra/generics/literals.html">Class Literals as Runtime-Type Tokens</a><br />
-<a href="https://stackoverflow.com/questions/6503942/how-to-interpret-java-generics-like-t-t-t-v-queryt-classt">How to interpret Java generics like &lt;T&gt; T , &lt;T,V&gt; Query&lt;T&gt; , Class&lt;T&gt;?</a><br />
-<a href="https://stackoverflow.com/questions/36363078/what-does-t-t-get-mean-and-is-it-useful">What does “&lt;T&gt; T get()” mean?</a></p>]]></content><author><name>EG</name></author><category term="java" /><summary type="html"><![CDATA[导读 最近在看Java的过程中对形如public &lt;T&gt; T get(...)的写法感到困惑，在网上很难找到合理解释。 分析 public &lt;T&gt; T readObjectData(ByteBuffer buffer, Class&lt;T&gt; type)]]></summary></entry><entry><title type="html">Java注解</title><link href="https://egsee.github.io/simple-blog/java/java%E6%B3%A8%E8%A7%A3" rel="alternate" type="text/html" title="Java注解" /><published>2021-09-17T03:13:16+08:00</published><updated>2021-09-17T03:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/java/java%E6%B3%A8%E8%A7%A3</id><content type="html" xml:base="https://egsee.github.io/simple-blog/java/java%E6%B3%A8%E8%A7%A3"><![CDATA[<h2 id="导读">导读</h2>
-<p>Java的注解从JDK5引入，有的注解仅仅帮助IDE给出相应提示，有的注解在<code class="language-plaintext highlighter-rouge">runtime</code>时会被解析成字节码，通过反射获取注解内容，有的注解专门约束其它注解类，这样的<code class="language-plaintext highlighter-rouge">Anotation</code>被称为<code class="language-plaintext highlighter-rouge">元注解</code>，本文结合自己的理解将逐一对其进行介绍。</p>
-
-<h2 id="内置注解">内置注解</h2>
-<p>Java的内置注解一共有7个，3个定义在<code class="language-plaintext highlighter-rouge">java.lang</code>中，另外4个定义在<code class="language-plaintext highlighter-rouge">java.lang.annotation</code>中，为了方便，我这里把<code class="language-plaintext highlighter-rouge">java.lang</code>中定义的注解称为<code class="language-plaintext highlighter-rouge">内置注解</code>，<code class="language-plaintext highlighter-rouge">java.lang.annotation</code>定义的注解成为<code class="language-plaintext highlighter-rouge">元注解</code>。</p>
-
-<!-- more -->
-
-<h3 id="override">@Override</h3>
-<p>检查该方法是否是重写方法。如果发现其父类，或者是引用的接口中并没有该方法时，会报编译错误。</p>
-<h3 id="deprecated">@Deprecated</h3>
-<p>标记过时方法，如果使用使用，编译器会给出相应警告。</p>
-<h3 id="suppresswarnings">@SuppressWarnings</h3>
-<p>指示编译器去忽略注解中声明的警告。比如：<code class="language-plaintext highlighter-rouge">@SuppressWarnings("deprecation")</code>,<code class="language-plaintext highlighter-rouge">@SuppressWarnings({"deprecation", "unused", "unchecked"})</code></p>
-
-<h2 id="元注解作用于其它注解上的注解">元注解（作用于其它注解上的注解）</h2>
-<h3 id="retention">@Retention</h3>
-<p>标识这个注解怎么保存，是只在代码中，还是编入class文件中，或者是在运行时可以通过反射访问。
- 它的值有以下几个构成：</p>
-<ul>
-  <li><strong>RetentionPolicy.SOURCE</strong>: Annotation信息仅存在于编译器处理期间，编译器处理完之后就没有该Annotation信息了。</li>
-  <li><strong>RetentionPolicy.CLASS</strong>: 编译器将Annotation存储于类对应的.class文件中。默认行为。</li>
-  <li><strong>RetentionPolicy.RUNTIME</strong>: 编译器将Annotation存储于class文件中，并且可由JVM读入。</li>
-</ul>
-
-<h4 id="例子">例子：</h4>
-<p>假设有一个我们自定义了一个名叫<code class="language-plaintext highlighter-rouge">TestAnn</code>的注解</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="c1">// @Retention(RetentionPolicy.RUNTIME) #可通过反射获取注解内容</span>
-
-<span class="c1">// @Retention(RetentionPolicy.SOURCE) #编译器将忽视TestAnn注释</span>
-<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">TestAnn</span> <span class="o">{</span>
-  <span class="c1">// ...</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="target">@Target</h2>
-<p>对一个自定义注解约束其使用范围，有如下值可选：</p>
-<ul>
-  <li>ElementType.TYPE - 用在类，接口，枚举，注解的声明</li>
-  <li>ElementType.FIELD - 用在字段的和枚举常量</li>
-  <li>ElementType.METHOD - 用在方法的声明</li>
-  <li>ElementType.PARAMETER - 用在参数的声明</li>
-  <li>ElementType.CONSTRUCTOR - 在构造函数的声明</li>
-  <li>ElementType.LOCAL_VARIABLE - 用在局部变量的声明</li>
-  <li>ElementType.ANNOTATION_TYPE - 用在注释的声明</li>
-  <li>ElementType.PACKAGE - 用在包的声明
-    <h3 id="例子-1">例子：</h3>
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 约束注释只能用在字段和方法上</span>
-<span class="nd">@Target</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">ElementType</span><span class="o">.</span><span class="na">FIELD</span><span class="o">,</span> <span class="nc">ElementType</span><span class="o">.</span><span class="na">METHOD</span> <span class="o">})</span>
-<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">TestAnn</span> <span class="o">{</span>
-<span class="c1">// ...</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="documented">@Documented</h2>
-<p>标记这些注解是否包含在用户文档中。</p>
-
-<h2 id="inherited">@Inherited</h2>
-<p>标记这个注解是继承于哪个注解类(默认 注解并没有继承于任何子类)</p>
-
-<h2 id="safevarargs-java7支持">@SafeVarargs (Java7支持)</h2>
-<p>忽略任何使用参数为泛型变量的方法或构造函数调用产生的警告。</p>
-
-<h2 id="functionalinterfacejava8支持">@FunctionalInterface（Java8支持）</h2>
-<p>标识一个匿名函数或函数式接口。</p>
-
-<h2 id="repeatablejava8支持">@Repeatable（Java8支持）</h2>
-<p>标识某注解可以在同一个声明上使用多次。</p>
-
-<h2 id="注解的架构">注解的架构</h2>
-<p><img src="/simple-blog/assets/img/posts/annotation-schema.jpg" alt="" />
-Annotation 有许多实现类，包括：Deprecated, Documented, Inherited, Override 等。
-<img src="/simple-blog/assets/img/posts/annotation-schema1.jpg" alt="" /></p>
-
-<h2 id="注解代码的组成">注解代码的组成</h2>
-<p>Annotation.java</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Annotation.java</span>
-<span class="kn">package</span> <span class="nn">java.lang.annotation</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Annotation</span> <span class="o">{</span>
-
-    <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span><span class="o">);</span>
-
-    <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">();</span>
-
-    <span class="nc">String</span> <span class="nf">toString</span><span class="o">();</span>
-
-    <span class="nc">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="nc">Annotation</span><span class="o">&gt;</span> <span class="nf">annotationType</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></div></div>
-<p>ElementType.java</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// ElementType.java</span>
-<span class="kn">package</span> <span class="nn">java.lang.annotation</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">ElementType</span> <span class="o">{</span>
-    <span class="no">TYPE</span><span class="o">,</span>               <span class="cm">/* 类、接口（包括注释类型）或枚举声明  */</span>
-
-    <span class="no">FIELD</span><span class="o">,</span>              <span class="cm">/* 字段声明（包括枚举常量）  */</span>
-
-    <span class="no">METHOD</span><span class="o">,</span>             <span class="cm">/* 方法声明  */</span>
-
-    <span class="no">PARAMETER</span><span class="o">,</span>          <span class="cm">/* 参数声明  */</span>
-
-    <span class="no">CONSTRUCTOR</span><span class="o">,</span>        <span class="cm">/* 构造方法声明  */</span>
-
-    <span class="no">LOCAL_VARIABLE</span><span class="o">,</span>     <span class="cm">/* 局部变量声明  */</span>
-
-    <span class="no">ANNOTATION_TYPE</span><span class="o">,</span>    <span class="cm">/* 注释类型声明  */</span>
-
-    <span class="no">PACKAGE</span>             <span class="cm">/* 包声明  */</span>
-<span class="o">}</span>
-</code></pre></div></div>
-<p>RetentionPolicy.java</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//RetentionPolicy.java</span>
-<span class="kn">package</span> <span class="nn">java.lang.annotation</span><span class="o">;</span>
-<span class="kd">public</span> <span class="kd">enum</span> <span class="nc">RetentionPolicy</span> <span class="o">{</span>
-    <span class="no">SOURCE</span><span class="o">,</span>            <span class="cm">/* Annotation信息仅存在于编译器处理期间，编译器处理完之后就没有该Annotation信息了  */</span>
-
-    <span class="no">CLASS</span><span class="o">,</span>             <span class="cm">/* 编译器将Annotation存储于类对应的.class文件中。默认行为  */</span>
-
-    <span class="no">RUNTIME</span>            <span class="cm">/* 编译器将Annotation存储于class文件中，并且可由JVM读入 */</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h2 id="一个简单的例子">一个简单的例子</h2>
-<p>UlRenderBorder.java</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// UlRenderBorder</span>
-<span class="kn">package</span> <span class="nn">com.example.annotation</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.lang.annotation.ElementType</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.lang.annotation.Retention</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.lang.annotation.RetentionPolicy</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.lang.annotation.Target</span><span class="o">;</span>
-
-<span class="nd">@Retention</span><span class="o">(</span><span class="nc">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
-<span class="nd">@Target</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="o">{</span> <span class="nc">ElementType</span><span class="o">.</span><span class="na">TYPE</span> <span class="o">})</span>
-<span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">UlBorderRender</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">border</span><span class="o">()</span> <span class="k">default</span> <span class="s">"border: 1px solid #000"</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>App.java</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.example</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">com.example.annotation.UlBorderRender</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">draw</span> <span class="o">=</span> <span class="nc">Draw</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
-    <span class="kt">boolean</span> <span class="n">hasUL</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="na">isAnnotationPresent</span><span class="o">(</span><span class="nc">UlBorderRender</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-    <span class="c1">// Method[] methods = draw.getMethods();</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">hasUL</span><span class="o">){</span>
-      <span class="nc">StringBuilder</span> <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
-      <span class="nc">UlBorderRender</span> <span class="n">ulAnn</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="na">getAnnotation</span><span class="o">(</span><span class="nc">UlBorderRender</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-      <span class="n">str</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"&lt;ul&gt;"</span> <span class="o">+</span> <span class="n">ulAnn</span><span class="o">.</span><span class="na">border</span><span class="o">()</span> <span class="o">+</span> <span class="s">"&lt;/ul&gt;"</span><span class="o">);</span>
-      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>]]></content><author><name>EG</name></author><category term="java" /><category term="java注解,java" /><category term="annotation" /><summary type="html"><![CDATA[导读 Java的注解从JDK5引入，有的注解仅仅帮助IDE给出相应提示，有的注解在runtime时会被解析成字节码，通过反射获取注解内容，有的注解专门约束其它注解类，这样的Anotation被称为元注解，本文结合自己的理解将逐一对其进行介绍。 内置注解 Java的内置注解一共有7个，3个定义在java.lang中，另外4个定义在java.lang.annotation中，为了方便，我这里把java.lang中定义的注解称为内置注解，java.lang.annotation定义的注解成为元注解。]]></summary></entry><entry><title type="html">NPM Workspaces</title><link href="https://egsee.github.io/simple-blog/frontend/NPM-Workspaces" rel="alternate" type="text/html" title="NPM Workspaces" /><published>2021-09-02T03:13:16+08:00</published><updated>2021-09-02T03:13:16+08:00</updated><id>https://egsee.github.io/simple-blog/frontend/NPM%20Workspaces</id><content type="html" xml:base="https://egsee.github.io/simple-blog/frontend/NPM-Workspaces"><![CDATA[<h3 id="workspaces是什么">Workspaces是什么？</h3>
-<p>npm在2020年10月发布的版本开始支持一个新功能：Workspaces</p>
-
-<p><code class="language-plaintext highlighter-rouge">Workspaces</code>即工作区，可以帮我们管理包含多个<code class="language-plaintext highlighter-rouge">包（package）</code>的项目，这些项目（称为monorepo）可能包含多个<code class="language-plaintext highlighter-rouge">package.json</code>，而Workspaces可以方便的对这类项目进行管理。</p>
-
-<!-- more -->
-
-<h3 id="举例说明">举例说明</h3>
-<p>一个简单的多包依赖项目的例子如下：</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">├──</span> <span class="nx">index</span><span class="p">.</span><span class="nx">js</span>
-<span class="err">├──</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
-<span class="err">└──</span> <span class="nx">packages</span>
-    <span class="err">├──</span> <span class="nx">packageA</span>
-    <span class="err">│</span>   <span class="err">├──</span> <span class="nx">index</span><span class="p">.</span><span class="nx">js</span>
-    <span class="err">│</span>   <span class="err">└──</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span> <span class="err">#</span> <span class="nx">Dependencies</span><span class="p">:</span> <span class="s2">`vuepress`</span><span class="p">,</span><span class="s2">`packageB`</span>
-    <span class="err">└──</span> <span class="nx">packageB</span>
-        <span class="err">├──</span> <span class="nx">index</span><span class="p">.</span><span class="nx">js</span>
-        <span class="err">└──</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span> <span class="err">#</span> <span class="nx">Dependencies</span><span class="p">:</span> <span class="s2">`vuepress`</span><span class="p">,</span> <span class="s2">`packageA`</span>
-</code></pre></div></div>
-<!-- more -->
-
-<p>当我们在根目录运行<code class="language-plaintext highlighter-rouge">npm install</code> 或 <code class="language-plaintext highlighter-rouge">yarn install</code>的时候，npm会在根文件的<code class="language-plaintext highlighter-rouge">node_modules</code>下创建彼此的符号链接，以便package能够引入，如下：</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">├──</span> <span class="nx">node_modules</span> <span class="err">#</span> <span class="nx">根文件</span> <span class="nx">node_modules</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="nx">vuepress</span> <span class="err">#</span> <span class="nx">依赖的vuepress</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="nx">packageA</span> <span class="err">#</span> <span class="nx">符号链接包A</span>
-<span class="err">│</span>   <span class="err">└──</span> <span class="nx">packageB</span> <span class="err">#</span> <span class="nx">符号链接包B</span>
-</code></pre></div></div>
-<h3 id="配置和使用">配置和使用</h3>
-
-<p>在根项目目录下的<code class="language-plaintext highlighter-rouge">packages.json</code>中配置<code class="language-plaintext highlighter-rouge">workspaces</code>关键字：</p>
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">workspaces</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
-    <span class="dl">"</span><span class="s2">packages/*</span><span class="dl">"</span><span class="p">,</span>
-  <span class="p">],</span>
-</code></pre></div></div>
-<p>子包中的<code class="language-plaintext highlighter-rouge">package.json</code>添加<code class="language-plaintext highlighter-rouge">dependencies</code>对其它包的依赖
-然后运行npm，则可以在子包中非常方便的使用本地依赖库了。</p>
-
-<h3 id="其它用法">其它用法</h3>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="nx">Run</span> <span class="dl">"</span><span class="s2">test</span><span class="dl">"</span> <span class="nx">script</span> <span class="nx">on</span> <span class="nx">all</span> <span class="nx">packages</span>
-<span class="nx">npm</span> <span class="nx">run</span> <span class="nx">test</span> <span class="o">--</span><span class="nx">workspaces</span>
-<span class="nx">npm</span> <span class="nx">run</span> <span class="nx">test</span>  <span class="o">-</span><span class="nx">ws</span>
-
-<span class="err">#</span> <span class="nx">Runs</span> <span class="dl">"</span><span class="s2">test</span><span class="dl">"</span> <span class="nx">only</span> <span class="nx">on</span> <span class="nx">packageA</span>
-<span class="nx">npm</span> <span class="nx">run</span> <span class="nx">test</span> <span class="o">--</span><span class="nx">workspace</span> <span class="nx">packageA</span>
-<span class="nx">npm</span> <span class="nx">run</span> <span class="nx">test</span> <span class="o">-</span><span class="nx">w</span> <span class="nx">packageB</span>
-
-<span class="err">#</span> <span class="nx">Install</span> <span class="s2">`lodash`</span> <span class="nx">on</span> <span class="s2">`packageA`</span>
-<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">lodash</span> <span class="o">--</span><span class="nx">workspace</span> <span class="nx">packageA</span>
-
-<span class="err">#</span> <span class="nx">Install</span> <span class="s2">`tap`</span> <span class="nx">on</span> <span class="s2">`packageB`</span> <span class="k">as</span> <span class="nx">a</span> <span class="nx">dev</span> <span class="nx">dependency</span>
-<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">tap</span> <span class="o">--</span><span class="nx">workspace</span> <span class="nx">packageB</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span>
-
-<span class="err">#</span> <span class="nx">Install</span> <span class="s2">`packageA`</span> <span class="nx">on</span> <span class="s2">`packageB`</span>
-<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">packageA</span> <span class="o">--</span><span class="nx">workspace</span> <span class="nx">packageB</span>
-
-<span class="err">#</span> <span class="nx">Install</span> <span class="s2">`eslint`</span> <span class="k">in</span> <span class="nx">all</span> <span class="nx">packages</span>
-<span class="nx">npm</span> <span class="nx">install</span> <span class="nx">eslint</span> <span class="o">--</span><span class="nx">workspaces</span>
-</code></pre></div></div>
-
-<h3 id="npm-工作区-与-yarn-工作区">npm 工作区 与 Yarn 工作区</h3>
-<p>Yarn中也有命令来管理workspaces,
-例如：</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn workspace &lt;workspace&gt; add &lt;dependency&gt;
-</code></pre></div></div>
-
-<h3 id="使用-lerna">使用 Lerna</h3>
-<p>使用 npm workspaces 和 yarn workspaces 虽然可以管理一些monorepos
-但对于一些更大的项目来说，它包含更多的依赖树，这时可能就要使用类似<a href="https://github.com/lerna/lerna">Lerna</a>这样的管理工具了。
-Lerna 有很多命令来管理大型的monorepo。
-在<a href="https://github.com/vuepress/vuepress-next">VuePress</a>项目中结合使用了这两个功能，读者可以参考其用法。</p>
-
-<h3 id="参考">参考</h3>
-<blockquote>
-  <p><a href="https://docs.npmjs.com/cli/v7/using-npm/workspaces">NPM Workspaces</a>
-<a href="https://ruanmartinelli.com/posts/npm-7-workspaces-1">Getting Started with npm Workspaces</a>
-<a href="https://github.com/vuepress/vuepress-next">Vuepress repository</a></p>
-</blockquote>]]></content><author><name>EG</name></author><category term="frontend" /><category term="npm" /><category term="workspaces" /><summary type="html"><![CDATA[Workspaces是什么？ npm在2020年10月发布的版本开始支持一个新功能：Workspaces Workspaces即工作区，可以帮我们管理包含多个包（package）的项目，这些项目（称为monorepo）可能包含多个package.json，而Workspaces可以方便的对这类项目进行管理。]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>EG</name></author><category term="go" /><category term="go" /><summary type="html"><![CDATA[如果一个go模块尚未发布，我们无法直接使用模块路径进行导入。这时候可以使用go mod edit。假设exmaple.com/hello依赖于example.com/greeting // 其中 ../greetings 为文件夹路径，可以与模块名不同 $ go mod edit -repalce example.com/greeting=../greetings // 然后运行 $ go mod tidy]]></summary></entry></feed>

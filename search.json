@@ -1,6 +1,38 @@
 [
   
     {
+      "title"    : "centos重置为默认官方镜像源",
+      "category" : "fragment",
+      "tags"     : "centos",
+      "url"      : "/simple-blog/fragment/centos%E9%87%8D%E5%BB%BA%E6%9B%B4%E6%8D%A2%E4%B8%BA%E5%AE%98%E6%96%B9%E9%95%9C%E5%83%8F%E6%BA%90",
+      "date"     : "2022-05-22 05:13:16 +0800"
+    } ,
+  
+    {
+      "title"    : "undefined symbol php_json_decode_ex in unknown on line 0",
+      "category" : "fragment",
+      "tags"     : "php, linux",
+      "url"      : "/simple-blog/fragment/php-redis%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD",
+      "date"     : "2022-05-22 04:13:16 +0800"
+    } ,
+  
+    {
+      "title"    : "centos locale警告",
+      "category" : "fragment",
+      "tags"     : "centos",
+      "url"      : "/simple-blog/fragment/centos-locale%E8%AD%A6%E5%91%8A",
+      "date"     : "2022-05-22 04:13:16 +0800"
+    } ,
+  
+    {
+      "title"    : "Docker CentOS 初始化",
+      "category" : "fragment",
+      "tags"     : "centos",
+      "url"      : "/simple-blog/fragment/Docker-CentOS%E5%88%9D%E5%A7%8B%E5%8C%96",
+      "date"     : "2022-05-21 04:13:16 +0800"
+    } ,
+  
+    {
       "title"    : "Javascript typed arrays",
       "category" : "frontend",
       "tags"     : "",
@@ -30,6 +62,14 @@
       "tags"     : "",
       "url"      : "/simple-blog/java/java-table%E6%B3%A8%E8%A7%A3",
       "date"     : "2022-05-07 00:00:00 +0800"
+    } ,
+  
+    {
+      "title"    : "centos nginx install",
+      "category" : "fragment",
+      "tags"     : "centos",
+      "url"      : "/simple-blog/fragment/centos-nginx-install",
+      "date"     : "2022-01-22 04:13:16 +0800"
     } ,
   
     {
@@ -82,9 +122,9 @@
   
     {
       "title"    : "Vscode Could not create temporary directory",
-      "category" : "fregment",
+      "category" : "fragment",
       "tags"     : "vscode",
-      "url"      : "/simple-blog/fregment/Vscode-cound-not-create-dirct",
+      "url"      : "/simple-blog/fragment/Vscode-cound-not-create-dirct",
       "date"     : "2021-06-03 04:13:16 +0800"
     } ,
   
